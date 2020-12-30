@@ -1,0 +1,17 @@
+var mongoose = require('mongoose');
+var express = require('express');
+var router = express.Router();
+
+
+
+var authController = require( '../controllers/authController')
+router.get('/users', authController.users);
+
+router.post('/register', authController.register);
+
+
+router.post('/login', authController.login);
+
+
+module.exports = router;
+
