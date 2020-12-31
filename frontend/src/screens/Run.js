@@ -4,11 +4,17 @@ import Codemirror from "../components/Codemirror";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 
+import UseForm from "../components/UseForm";
 var api = {
     run: "http://localhost:5000/api/v1/run",
 };
 function Run() {
-    const [selectedOption, setSelectedOption] = useState();
+    const [selectedOption, setSelectedOption] = useState('c');
+    const { codeio,  handleInputChange, handleSubmit } = UseForm({
+        username: "",
+        password: "",
+        type: "RUN",
+    });
     var [code, setCode] = React.useState("// my code goes here");
     console.log(selectedOption);
     return (
@@ -36,7 +42,7 @@ function Run() {
                         <option value="python">Python</option>
                     </select>
 
-                    <Codemirror code={code} setCode={setCode} />
+                    <Codemirror lang={selectedOption} code={code} setCode={setCode} />
                 </div>
                 <div>
                     <label for="myfile">Or Select a file:</label>

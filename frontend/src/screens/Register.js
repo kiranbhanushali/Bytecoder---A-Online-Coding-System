@@ -12,10 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
-var api ={
-    register:"http://localhost:5000/api/auth/register"
-}
+import UseForm from '../components/UseForm'
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -39,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Register() {
   const classes = useStyles();
 
+const {inputs, handleInputChange, handleSubmit} = UseForm({username:'',password:'',firstname:'',lastname:'',email:'' ,type:"REGISTER"});
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -49,7 +47,8 @@ export default function Register() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} method="POST" action={api.register}>
+        <form className={classes.form} onSubmit={handleSubmit}>
+
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -60,6 +59,7 @@ export default function Register() {
                 fullWidth
                 id="firstname"
                 label="First Name"
+                onChange={handleInputChange} value={inputs.firstname}
                 autoFocus
               />
             </Grid>
@@ -71,6 +71,7 @@ export default function Register() {
                 id="lastname"
                 label="Last Name"
                 name="lastname"
+            onChange={handleInputChange} value={inputs.lastname}
                 autoComplete="lname"
               />
             </Grid>
@@ -81,6 +82,7 @@ export default function Register() {
                 fullWidth
                 id="username"
                 label="username "
+            onChange={handleInputChange} value={inputs.username}
                 name="username"
               />
             </Grid>
@@ -93,6 +95,7 @@ export default function Register() {
                 id="email"
                 label="Email Address"
                 name="email"
+            onChange={handleInputChange} value={inputs.email}
                 autoComplete="email"
               />
             </Grid>
@@ -105,6 +108,7 @@ export default function Register() {
                 label="Password"
                 type="password"
                 id="password"
+            onChange={handleInputChange} value={inputs.password}
                 autoComplete="current-password"
               />
             </Grid>

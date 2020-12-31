@@ -6,7 +6,7 @@ import ProblemsTable from '../components/ProblemsTable'
 const Problems = (props) => {
     let [problems, setProblems] = React.useState('') // state hook
     React.useEffect(() => {                           // side effect hook
-        axios.get('http://localhost:5000/api/v1/problems')
+        axios.get('http://localhost:5000/api/v1/problems',{ headers: { "authorization" : localStorage.getItem("token") || ''  } })
             .then(function (response) {
                 setProblems( response.data ) ;
                 console.log(response.data);

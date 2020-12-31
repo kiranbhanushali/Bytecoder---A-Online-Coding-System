@@ -4,7 +4,7 @@ const Header = () => {
   return (
  <nav className="container-fluid navbar px-5   bg-light ">
       <div className="nav mx-5">
-      <img className="navbar-brand" src={logo} height="80" alt="logo"></img>
+      <a href='/'><img className="navbar-brand" src={logo} height="80" alt="logo"></img> </a>
       </div>
       <div className="nav">
         <ul className="nav inline">

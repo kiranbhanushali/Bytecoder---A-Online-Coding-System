@@ -44,9 +44,12 @@ mongoose.connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true 
 	});
 
 var indexRouter = require( './routes/indexRouter');
+var uploadRouter = require( './routes/upload');
 var restRouter = require( './routes/restRouter');
 var authRouter = require('./routes/authRouter');
 var runRouter = require('./routes/runRouter');
+var profileRouter = require('./routes/profileRouter');
+var submitRouter = require('./routes/submitRouter');
 
 
 app.use(express.static(path.join(__dirname, '../public')));
@@ -58,12 +61,15 @@ app.use(bodyParser.json())
 var jwt = require('jsonwebtoken')
 // routers T
 const verifyJWT = (req ,res , next )=>{
+    console.log( req.headers["authorization"]);
+    if( req.headers["authorization"] === undefined ) res.send("enter token") 
+
     const token = req.headers["authorization"];
     if( !token ) {
-        res.send( " enter token" ) ;
+        res.json({ success:false })
     } else{
         jwt.verify( token , 'mysecretkey', (err,decoded)=>{
-            if( err) res.send( " auth not " ) ;
+            if( err) res.json({ success:false })
             else {
                 req.decoded = decoded ; 
                 next();
@@ -76,9 +82,12 @@ const verifyJWT = (req ,res , next )=>{
 // api routes 
 app.use("/", indexRouter);
 // app.use("/api/v1",verifyJWT, restRouter);
+app.use('/api/v1/auth', authRouter);
 app.use("/api/v1", restRouter);
 app.use("/api/v1", runRouter);
-app.use('/api/v1/auth', authRouter);
+app.use("/api/v1" , submitRouter);
+app.use("/api/v1" , uploadRouter);
+app.use("/api/v1" ,verifyJWT ,  profileRouter);
 
 
 // create server 

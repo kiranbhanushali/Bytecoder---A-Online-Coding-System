@@ -39,8 +39,10 @@ const Profile = (props) => {
                                             className="rounded-circle"
                                             width="150"
                                         />
-                                        <div className="mt-3">
-                                            <h4>{userdata.username}</h4>
+            <div className="mt-3">
+                                            <h4>
+                                                {userdata.username}
+                                                                                          </h4>
                                         </div>
                                     </div>
                                 </div>
@@ -54,9 +56,9 @@ const Profile = (props) => {
                                             <h6 className="mb-0">Full Name</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                            {userdata.firstname +
-                                                " " +
-                                                userdata.lastname}
+                                                {userdata.firstname +
+                                                    " " +
+                                                    userdata.lastname}
                                         </div>
                                     </div>
                                     <div className="row">
@@ -72,29 +74,23 @@ const Profile = (props) => {
                                             <h6 className="mb-0">Country</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                            {userdata.country
-                                                ? userdata.country
-                                                : "India"}
+                                            {userdata.country? userdata.country:"India"}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="card justify-content-center btn-box-row row-fluid">
-                                <b>
-                                    {" "}
-                                    {userdata.meta &&
-                                    userdata.meta.total_submissions
-                                        ? userdata.meta.total_submissions
-                                        : 0}{" "}
-                                </b>
-                                <p className="text-muted">Total Submissions</p>
-                                <b>
-                                    {" "}
-                                    {userdata.meta && userdata.meta.accuracy
-                                        ? userdata.meta.accuracy
-                                        : 0}{" "}
-                                </b>
-                                <p className="text-muted">Accuracy</p>
+                            <div className="card btn-box-row row-fluid">
+                                <a href="#" className="btn-box big span4">
+                                    <i className=" icon-random"></i>
+                                    <b> {userdata.meta&&userdata.meta.total_submissions ? userdata.meta.total_submissions : 0 }   </b>
+                                    <p className="text-muted">Total Submissions</p>
+                                </a>
+                                <a href="#" className="btn-box big span4">
+                                    <i className="icon-user"></i>
+                                    <b> {userdata.meta&&userdata.meta.accuracy ? userdata.meta.accuracy : 0 }   </b>
+                                    <b>  </b>
+                                    <p className="text-muted">Accuracy</p>
+                                </a>
                             </div>
                         </div>
                     </div>

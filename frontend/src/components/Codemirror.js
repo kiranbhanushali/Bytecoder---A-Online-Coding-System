@@ -21,12 +21,13 @@ function CodeEditor( props ) {
     console.log( props) 
     var code = props.code
     var setCode = props.setCode
+    var lang = props.lang;
   return (
     <CodeMirror
       style={{alignItems:'left',alignText:'left'}}
       value={code}
       options={{
-        mode: 'python', theme: 'material',
+        mode: lang, theme: 'material',
         lineWrapping: true,
         smartIndent: true,
         lineNumbers: true,

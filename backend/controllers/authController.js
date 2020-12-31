@@ -48,7 +48,7 @@ exports.login = (req, res) => {
             if (err) throw err;
 
             if (!user) {
-                res.status(401).send({
+                res.send({
                     success: false,
                     msg: "Authentication failed. User not found.",
                 });
@@ -67,7 +67,7 @@ exports.login = (req, res) => {
                             // return the information including token as JSON
                             res.json({ success: true, token: "JWT " + token });
                         } else {
-                            res.status(401).send({
+                            res.send({
                                 success: false,
                                 msg: "Authentication failed. Wrong password.",
                             });
