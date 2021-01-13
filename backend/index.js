@@ -10,8 +10,11 @@ var cors = require('cors')
 var db = require( './models')
 
 
+//file uplaodf
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
 // cors to access the apis 
-const allowedOrigins = ["http://localhost:3000","http://localhost:8080"];
+const allowedOrigins = ["http://localhost:3000","http://localhost:5000"];
     app.use(
         cors({
             origin: function(origin, callback) {
@@ -84,9 +87,7 @@ app.use("/", indexRouter);
 // app.use("/api/v1",verifyJWT, restRouter);
 app.use('/api/v1/auth', authRouter);
 app.use("/api/v1", restRouter);
-app.use("/api/v1", runRouter);
 app.use("/api/v1" , submitRouter);
-app.use("/api/v1" , uploadRouter);
 app.use("/api/v1" ,verifyJWT ,  profileRouter);
 
 

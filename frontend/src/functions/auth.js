@@ -13,6 +13,7 @@ export const LoginF = (data) => {
                 console.log(response);
                 let token = response.data.token.split(' ');
                 localStorage.setItem("token",token[1]);
+                window.location.reload();
             }
         );
 };

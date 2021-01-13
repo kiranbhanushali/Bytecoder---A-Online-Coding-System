@@ -18,7 +18,6 @@ import 'codemirror/addon/fold/comment-fold';
 import 'codemirror/addon/fold/foldgutter.css';
 
 function CodeEditor( props ) {
-    console.log( props) 
     var code = props.code
     var setCode = props.setCode
     var lang = props.lang;
@@ -40,9 +39,9 @@ function CodeEditor( props ) {
         }
       }}
       onBeforeChange={(editor, data, value) => {
-        setCode(value);
+          setCode(value)
       }}
-      onChange={(editor, data, value) => {}}
+      onChange = {props.onChange}
     />
   );
 }

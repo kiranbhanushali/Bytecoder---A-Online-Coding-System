@@ -1,0 +1,17 @@
+
+
+actions 
+
+
+    problem 
+        addproblem 
+        submitproblem 
+        fetchproblem
+        
+    profile 
+        editprofile
+        fetchprofile 
+
+    login register 
+        setuser
+        removeuser 

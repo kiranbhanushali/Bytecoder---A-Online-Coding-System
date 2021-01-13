@@ -11,7 +11,6 @@ const problemSchema = new Schema({
     },
     category:{
         type: String ,
-        required:true
     },
     markdown: {
         type:String , 

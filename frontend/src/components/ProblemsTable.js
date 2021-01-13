@@ -14,7 +14,7 @@ let api = {
 }
 export default function ProblemsTable(props) {
     let problems = props.problems
-    console.log( props) ;
+    console.log( problems) ;
     return (
         <table class="table table-hover">
             <thead>
@@ -28,7 +28,7 @@ export default function ProblemsTable(props) {
                 </tr>
             </thead>
             <tbody>
-                {problems.map((item, index) => {
+                {problems.problems_list.map((item, index) => {
                     return (
                         <tr>
                             <th scope="row">{index}</th>

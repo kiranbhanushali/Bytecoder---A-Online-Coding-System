@@ -1,24 +1,35 @@
 import React, { Component } from "react";
-import PROBLEMAPI from '../api/problems'
-import axios from 'axios'
-import Spinner from '../components/Spinner'
-import ProblemsTable from '../components/ProblemsTable'
+import PROBLEMAPI from "../api/problems";
+import axios from "axios";
+import Spinner from "../components/Spinner";
+import ProblemsTable from "../components/ProblemsTable";
+import fetchProblems from "../actions/fetchProblems";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 const Problems = (props) => {
-    let [problems, setProblems] = React.useState('') // state hook
-    React.useEffect(() => {                           // side effect hook
-        axios.get('http://localhost:5000/api/v1/problems',{ headers: { "authorization" : localStorage.getItem("token") || ''  } })
-            .then(function (response) {
-                setProblems( response.data ) ;
-                console.log(response.data);
-            });
+    var problems =  []
+    React.useEffect(() => {
+         props.fetchProblems();
+        problems = props.problems   
+        console.log( problems);
+        
+        console.log( props);
+    }, []);
 
-    }, [])
-
-    if( problems.length >0 ) {
-        return <ProblemsTable problems ={problems} />
-    }else 
-    {
-        return <Spinner />
+    if (props.problems.pending === false ) {
+        return <ProblemsTable problems={props.problems} />;
+    } else {
+        return <Spinner />;
     }
+};
+
+function mapStateToProps(state) {
+  return { problems: state.problems};
 }
-export default Problems;
+    
+const mapDispatchToProps = dispatch => bindActionCreators({
+    fetchProblems: fetchProblems
+}, dispatch)
+
+export default connect(mapStateToProps,mapDispatchToProps)(Problems);
+// export default Problems;

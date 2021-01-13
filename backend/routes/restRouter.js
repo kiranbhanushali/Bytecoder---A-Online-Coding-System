@@ -24,13 +24,14 @@ router.get('/problems', function(req, res) {
 //     res.send( req.body);
 // }
 // );
-router.post('/problems', function(req, res){
+router.post('/problem', function(req, res){
 
+    console.log( req.body);
     var problem = new ProblemModel(
         { title: req.body.title,
             code: req.body.code,
             category:req.body.category,
-            markdown:req.body.markdown,
+            markdown:req.body.statement,
             meta: req.body.meta
         });
 

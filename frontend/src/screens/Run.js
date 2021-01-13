@@ -1,25 +1,35 @@
 import "codemirror/keymap/sublime";
 import "codemirror/theme/monokai.css";
 import Codemirror from "../components/Codemirror";
-import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 
 import UseForm from "../components/UseForm";
 var api = {
     run: "http://localhost:5000/api/v1/run",
 };
-function Run() {
-    const [selectedOption, setSelectedOption] = useState('c');
-    const { codeio,  handleInputChange, handleSubmit } = UseForm({
-        username: "",
-        password: "",
-        type: "RUN",
+function Run(props) {
+    // for mode of editor
+    const [selectedOption, setSelectedOption] = useState("c");
+    const { inputs ,  handleInputChange, handleSubmit } = UseForm({
+        myfile:"",
+        code:"",
+        type:"RUN"
     });
-    var [code, setCode] = React.useState("// my code goes here");
-    console.log(selectedOption);
+    const [code, setCode] = useState("//write code here ");
+    const loadComponent = () => {
+        if (
+            props.history.location.state &&
+            props.history.location.state.problem
+        ) {
+            var problem = props.history.location.state.problem;
+            return <h1> Submit Problem : {problem[0].code}</h1>;
+        } else {
+            return <h1> Code, Compile & Run </h1>;
+        }
+    };
     return (
         <div className="editor-form">
-            <form action={api.run} method="POST">
+            <form onSubmit={handleSubmit}>
                 <div
                     className="editor "
                     style={{
@@ -27,29 +37,43 @@ function Run() {
                         margin: "auto",
                         width: "70%",
                         padding: 10,
-                        height: "80%",
                         marginTop: 100,
                     }}
                 >
-                    <h1> Code, Compile & Run </h1>
-                    <select
-                        id="lang"
-                        value={selectedOption}
-                        onChange={(e) => setSelectedOption(e.target.value)}
-                    >
-                        <option value="c">C</option>
-                        <option value="cpp">C++ </option>
-                        <option value="python">Python</option>
-                    </select>
+                    {loadComponent()}
 
-                    <Codemirror lang={selectedOption} code={code} setCode={setCode} />
+                    <div>
+                        <select
+                            id="mode"
+                            value={selectedOption}
+                            onChange={(e) => setSelectedOption(e.target.value)}
+                        >
+                            <option value="c">C</option>
+                            <option value="cpp">C++ </option>
+                            <option value="python">Python</option>
+                        </select>
+                        <Codemirror
+                            code={code}
+                            setCode={setCode}
+                            mode={selectedOption}
+                            onChange={handleInputChange}
+                        />
+                    </div>
                 </div>
                 <div>
-                    <label for="myfile">Or Select a file:</label>
-                    <input type="file" id="myfile" name="myfile" />
-                </div>
-                <div>
-                    <button class="submit">Submit</button>
+                    <div class="d-flex justify-content-center m-4">
+                        <label for="myfile">Or Select a file:</label>
+                        <input
+                            type="file"
+                            id="myfile"
+                            name="myfile"
+                            onChange={handleInputChange}
+                        />
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <button>Submit</button>
+                    </div>
                 </div>
             </form>
         </div>
