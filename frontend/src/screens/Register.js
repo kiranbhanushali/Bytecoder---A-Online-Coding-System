@@ -1,31 +1,32 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import UseForm from '../components/UseForm'
+import React, { useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import { useDispatch } from "react-redux";
+import { registerF } from "../actions/registerAction";
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -35,8 +36,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Register() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const [user, setUser] = useState({ username: "", password: "" });
+  const handleInputChange = (event) => {
+    setUser({ ...user, [event.target.name]: event.target.value });
+  };
 
-const {inputs, handleInputChange, handleSubmit} = UseForm({username:'',password:'',firstname:'',lastname:'',email:'' ,type:"REGISTER"});
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // loginF(dispatch, user);
+    registerF(dispatch, user);
+    console.log(user);
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -48,7 +60,6 @@ const {inputs, handleInputChange, handleSubmit} = UseForm({username:'',password:
           Sign up
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit}>
-
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -59,7 +70,8 @@ const {inputs, handleInputChange, handleSubmit} = UseForm({username:'',password:
                 fullWidth
                 id="firstname"
                 label="First Name"
-                onChange={handleInputChange} value={inputs.firstname}
+                onChange={handleInputChange}
+                value={user.firstname}
                 autoFocus
               />
             </Grid>
@@ -71,7 +83,8 @@ const {inputs, handleInputChange, handleSubmit} = UseForm({username:'',password:
                 id="lastname"
                 label="Last Name"
                 name="lastname"
-            onChange={handleInputChange} value={inputs.lastname}
+                onChange={handleInputChange}
+                value={user.lastname}
                 autoComplete="lname"
               />
             </Grid>
@@ -82,7 +95,8 @@ const {inputs, handleInputChange, handleSubmit} = UseForm({username:'',password:
                 fullWidth
                 id="username"
                 label="username "
-            onChange={handleInputChange} value={inputs.username}
+                onChange={handleInputChange}
+                value={user.username}
                 name="username"
               />
             </Grid>
@@ -95,7 +109,8 @@ const {inputs, handleInputChange, handleSubmit} = UseForm({username:'',password:
                 id="email"
                 label="Email Address"
                 name="email"
-            onChange={handleInputChange} value={inputs.email}
+                onChange={handleInputChange}
+                value={user.email}
                 autoComplete="email"
               />
             </Grid>
@@ -108,7 +123,8 @@ const {inputs, handleInputChange, handleSubmit} = UseForm({username:'',password:
                 label="Password"
                 type="password"
                 id="password"
-            onChange={handleInputChange} value={inputs.password}
+                onChange={handleInputChange}
+                value={user.password}
                 autoComplete="current-password"
               />
             </Grid>
