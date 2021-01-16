@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import { Redirect } from 'react-router';
-const logout = ( ) =>{
+import "./Header.css";
+const logout = () => {
     localStorage.clear();
-    return   <Redirect path="*" to="/" />
+    return <Redirect path="*" to="/" />
 
 }
 
 const Authhandle = () => {
-    if ( localStorage.getItem("token")) {
+    if (localStorage.getItem("token")) {
         return (
             <div>
                 <li className="nav-items px-1">
@@ -40,6 +41,7 @@ const Authhandle = () => {
 };
 const Header = () => {
     return (
+        <div className="navbar">
         <nav className="container-fluid navbar px-5   bg-light ">
             <div className="nav mx-5">
                 <a href="/">
@@ -51,7 +53,7 @@ const Header = () => {
                     ></img>{" "}
                 </a>
             </div>
-            <div className="nav">
+            <div className="nav" className="nav_buttons">
                 <ul className="nav inline">
                     <li className="nav-items px-1">
                         <a href="/problems" className="btn btn-primary rounded">
@@ -75,6 +77,7 @@ const Header = () => {
                 </ul>
             </div>
         </nav>
+        </div>
     );
 };
 
