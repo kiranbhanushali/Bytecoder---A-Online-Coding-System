@@ -3,6 +3,7 @@ const initialState = {
   problems_list: [],
   pending: false,
   error: null,
+  loaded: false,
   message: null,
 };
 
@@ -19,6 +20,7 @@ export default function problemsReducer(state = initialState, action) {
       return {
         ...state,
         problems_list: action.payload,
+        loaded: true,
         pending: false,
       };
 
@@ -33,7 +35,3 @@ export default function problemsReducer(state = initialState, action) {
       return state;
   }
 }
-
-export const getProblems = (state) => state.problems;
-export const getProductsPending = (state) => state.pending;
-export const getProductsError = (state) => state.error;
