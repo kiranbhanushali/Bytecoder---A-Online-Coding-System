@@ -1,22 +1,22 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var path = require('path');
+var path = require("path");
 
-var ProblemModel = require( '../models/problemsModel.js');
+var ProblemModel = require("../models/problemsModel.js");
 
-
-router.get('/problems', function(req, res) {
-    if( req.query.category !== undefined ) {
-        
-        ProblemModel.find({category:req.query.category }, function (err, problems) {
-            res.send(problems);
-        });
-
-    }else{
-        ProblemModel.find({}, function (err, problems) {
-            res.send(problems);
-        });
-    }
+router.get("/problems", function (req, res) {
+  if (req.query.category !== undefined) {
+    ProblemModel.find(
+      { category: req.query.category },
+      function (err, problems) {
+        res.send(problems);
+      }
+    );
+  } else {
+    ProblemModel.find({}, function (err, problems) {
+      res.send(problems);
+    });
+  }
 });
 
 // router.post( '/a',function (req , res ) {
@@ -24,44 +24,37 @@ router.get('/problems', function(req, res) {
 //     res.send( req.body);
 // }
 // );
-router.post('/problem', function(req, res){
+router.post("/problem", function (req, res) {
+  console.log(req.body);
+  var problem = new ProblemModel({
+    title: req.body.title,
+    code: req.body.code,
+    category: req.body.category,
+    markdown: req.body.statement,
+    meta: req.body.meta,
+    input: req.body.input,
+    output: req.body.output,
+  });
 
-    console.log( req.body);
-    var problem = new ProblemModel(
-        { title: req.body.title,
-            code: req.body.code,
-            category:req.body.category,
-            markdown:req.body.statement,
-            meta: req.body.meta
-        });
+  // test cases save here
+  //
 
-
-    // test cases save here 
-    //
-
-
-
-    //Save book.
-    problem.save(function (err) {
-        if (err) console.log(err) ; 
-        else console.log( "saved");
-    });
-    res.send( problem ) ;
-
+  //Save book.
+  problem.save(function (err) {
+    if (err) console.log(err);
+    else console.log("saved");
+  });
+  res.send(problem);
 });
 
-
-
-router.get('/problem/:code', function(req, res) {
-
-    ProblemModel.find({code:req.params.code}, function (err, problems) {
-        res.send(problems);
-    });
+router.get("/problem/:code", function (req, res) {
+  ProblemModel.find({ code: req.params.code }, function (err, problems) {
+    res.send(problems);
+  });
 });
 
-
-router.post( '/submit/:problemId' , function(req,res){
-    console.log( req.body ) ;
+router.post("/submit/:problemId", function (req, res) {
+  console.log(req.body);
 });
 
 module.exports = router;

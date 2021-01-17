@@ -1,13 +1,51 @@
-import React, { Component } from "react";
-import UseForm from "../components/UseForm";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import {addProblemF} from '../actions/addProblemAction'
 export default function AddProblem() {
-    const { inputs, handleInputChange, handleSubmit } = UseForm({
+    const dispatch = useDispatch();
+    const [newProblem, setNewProblem] = useState({
         title: "",
         code: "",
-        category: "",
+        category: [],
+        tmpCategory: "",
         statement: "",
-        type: "ADDPROBLEM",
+        input: [],
+        output: [],
     });
+
+    const handleInputChange = (event) => {
+        if (event.target.name === "addCategory") {
+            if (newProblem.tmpCategory === "") {
+            } else {
+                setNewProblem((prevState) => ({
+                    ...prevState,
+                    category: [...prevState.category, prevState.tmpCategory],
+                    tmpCategory: "",
+                }));
+            }
+        } else if (event.target.name === "addTestCase") {
+            if (newProblem.tempInput === "" || newProblem.tempOutput === "") {
+            } else {
+                setNewProblem((prevState) => ({
+                    ...prevState,
+                    input: [...prevState.input, prevState.tempInput],
+                    output: [...prevState.output, prevState.tempOutput],
+                    tempOutput: "",
+                    tempInput: "",
+                }));
+            }
+        } else
+            setNewProblem({
+                ...newProblem,
+                [event.target.name]: event.target.value,
+            });
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        addProblemF(newProblem);
+    };
+
     return (
         <div class="container">
             <h2 class="text-center">Add Problem</h2>
@@ -21,7 +59,7 @@ export default function AddProblem() {
                         id="title"
                         placeholder="Title"
                         onChange={handleInputChange}
-                        value={inputs.title}
+                        value={newProblem.title}
                         name="title"
                     />
                 </div>
@@ -34,37 +72,36 @@ export default function AddProblem() {
                         id="code"
                         placeholder="Enter code"
                         onChange={handleInputChange}
-                        value={inputs.code}
+                        value={newProblem.code}
                         name="code"
                     />
                 </div>
                 <div id="chk_option_error">
                     Please select at least one category.
                     <div>
-                        brutforce
                         <input
-                            id="brutforce"
-                            value="brutforce"
-                            name="category"
-                            type="radio"
+                            name="tmpCategory"
+                            type="text"
+                            class="form-control"
+                            value={newProblem.tmpCategory}
                             onChange={handleInputChange}
                         />
-                        greedy
-                        <input
-                            id="greedy"
-                            value="greedy"
-                            name="category"
-                            type="radio"
-                            onChange={handleInputChange}
-                        />
-                        dp
-                        <input
-                            id="dp"
-                            value="dp"
-                            name="category"
-                            type="radio"
-                            onChange={handleInputChange}
-                        />
+                        <button
+                            class="form-control"
+                            name="addCategory"
+                            onClick={(event) => {
+                                handleInputChange(event);
+                            }}
+                        >
+                            Add
+                        </button>
+                    </div>
+                    <div>
+                        <ul>
+                            {newProblem.category.map((category) => {
+                                return <li>{category} </li>;
+                            })}
+                        </ul>
                     </div>
                 </div>
 
@@ -73,11 +110,39 @@ export default function AddProblem() {
                     name="statement"
                     required
                     onChange={handleInputChange}
-                    value={inputs.statement}
+                    value={newProblem.statement}
                     class="form-control"
                     rows="5"
                     id="comment"
                 ></textarea>
+                <label for="tempInput">Input:</label>
+                <textarea
+                    name="tempInput"
+                    onChange={handleInputChange}
+                    value={newProblem.tempInput}
+                    class="form-control"
+                    rows="5"
+                    id="input"
+                ></textarea>
+                <label for="tempOutput">OUTPUT</label>
+                <textarea
+                    name="tempOutput"
+                    onChange={handleInputChange}
+                    value={newProblem.tempOutput}
+                    class="form-control"
+                    rows="5"
+                    id="output"
+                ></textarea>
+                <button
+                    class="form-control"
+                    name="addTestCase"
+                    onClick={(event) => {
+                        handleInputChange(event);
+                    }}
+                >
+                    Add New Testcase
+                </button>
+
                 <button type="submit" class="btn btn-default">
                     Submit
                 </button>
@@ -85,3 +150,4 @@ export default function AddProblem() {
         </div>
     );
 }
+

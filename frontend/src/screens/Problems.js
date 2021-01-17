@@ -12,7 +12,7 @@ const Problems = (props) => {
 
   const problems_loaded = useSelector((state) => state.problems.loaded);
 
-  if (problems_loaded) {
+  if (!problems_loaded) {
     fetchProblems(dispatch);
     return <Spinner />;
   } else if (problems_pending) {

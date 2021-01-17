@@ -1,24 +1,26 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
-import TableRow from "@material-ui/core/TableRow";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-export default function ProblemsTable(props) {
-  const problems_list = useSelector((state) => state.problems.problems_list);
 
+export default function ProblemsTable() {
   const history = useHistory();
+  const query = history.location.search.split("=")[1] || null;
+
+  const problems_list = useSelector((state) => {
+    if (query === null) {
+      return state.problems.problems_list;
+    } else {
+      return state.problems.problems_list.filter(
+        (problem) => problem.category === query
+      );
+    }
+  });
+
   const onProblemClick = (id) => {
     history.push("/problem/" + id);
   };
   const onCategorieClick = (cat) => {
-    history.push("/category/" + cat);
+    history.push("/problems?cat=" + cat);
   };
   return (
     <table class="table table-hover">
