@@ -10,6 +10,7 @@ export function loginF(dispatch, data) {
     .then(function (response) {
       console.log(response);
       let token = response.data.token;
+      localStorage.setItem("token", token);
       dispatch(loginSuccess(token, response.data));
     })
     .catch(function (error) {

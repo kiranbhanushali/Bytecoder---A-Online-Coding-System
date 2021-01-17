@@ -9,6 +9,7 @@ const Authhandle = () => {
   const isLogged = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
   const onClickLogout = () => {
+    localStorage.removeItem("token");
     dispatch(logout());
   };
   if (isLogged) {

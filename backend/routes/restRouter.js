@@ -23,9 +23,30 @@ router.get("/problems", function (req, res) {
 //     console.log( req.body) ;
 //     res.send( req.body);
 // }
-// );
-router.post("/problem", function (req, res) {
-  console.log(req.body);
+// });
+//
+// add problems
+var jwt = require("jsonwebtoken");
+// routers T
+const verifyJWT = (req, res, next) => {
+  console.log(req.headers["authorization"]);
+  if (req.headers["authorization"] === undefined) res.send("enter token");
+  const token = req.headers["authorization"].split(" ")[1];
+  if (!token) {
+    res.json({ success: false });
+  } else {
+    jwt.verify(token, "mysecretkey", (err, decoded) => {
+      if (err) res.json({ err: err, decoded: decoded, success: false });
+      else {
+        req.decoded = decoded;
+        next();
+      }
+    });
+  }
+};
+
+router.post("/problem", verifyJWT, function (req, res) {
+  console.log(req);
   var problem = new ProblemModel({
     title: req.body.title,
     code: req.body.code,
@@ -38,13 +59,17 @@ router.post("/problem", function (req, res) {
 
   // test cases save here
   //
-
-  //Save book.
-  problem.save(function (err) {
-    if (err) console.log(err);
-    else console.log("saved");
-  });
-  res.send(problem);
+  console.log(req.decoded);
+  if (req.decoded.isAdmin) {
+    //Save book.
+    problem.save(function (err) {
+      if (err) console.log(err);
+      else console.log("saved");
+    });
+    res.send(problem);
+  } else {
+    res.send("only admin can add problem");
+  }
 });
 
 router.get("/problem/:code", function (req, res) {

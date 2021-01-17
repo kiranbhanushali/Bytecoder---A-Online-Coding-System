@@ -13,8 +13,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { loginF } from "../actions/loginAction";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
+  let history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
   const [user, setUser] = useState({ username: "", password: "" });
@@ -43,10 +44,16 @@ export default function Login() {
     setUser({ ...user, [event.target.name]: event.target.value });
   };
 
+  const auth = useSelector((state) => state.auth);
   const handleSubmit = (event) => {
     event.preventDefault();
     loginF(dispatch, user);
+    console.log("handleSubmit", auth);
+    if (auth.isLoggedIn) {
+      history.push("/");
+    }
   };
+  const msg = auth.msg;
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -57,6 +64,13 @@ export default function Login() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+        <div>
+          {msg !== null && (
+            <div class="alert alert-danger" role="alert">
+              {msg}
+            </div>
+          )}
+        </div>
         <form className={classes.form} onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
@@ -97,11 +111,6 @@ export default function Login() {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
             <Grid item>
               <Link href="/register" variant="body2">
                 {"Don't have an account? Sign Up"}

@@ -43,7 +43,7 @@ export default function ProblemsTable() {
                 <a onClick={() => onProblemClick(item.code)}>{item.title}</a>
               </td>
               <td>
-                <a onClick={() => onProblemClick(item.code)}>{item.title}</a>
+                <a onClick={() => onProblemClick(item.code)}>{item.code}</a>
               </td>
               <td>
                 <a onClick={() => onCategorieClick(item.category)}>
