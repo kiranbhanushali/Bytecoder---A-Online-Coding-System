@@ -2,15 +2,33 @@ import React, { Component, useState } from "react";
 import Codemirror from "../components/Codemirror";
 import { useDispatch, useSelector } from "react-redux";
 import { submitF } from "../actions/submitAction";
-function Submit() {
-  const [content, setContent] = useState({ code: "", language: "C" });
+function Submit(props) {
+  const [content, setContent] = useState({
+    code: "",
+    language: "C",
+    problem_code: "",
+  });
   const dispatch = useDispatch();
   const handleInputChange = (event) => {
-    console.log(event);
     setContent((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));
+  };
+  const loadComponent = () => {
+    console.log(props.history);
+    if (props.history.location.search) {
+      if (content.problem_code === "") {
+        var problem_code = props.history.location.search.split("=")[1];
+        setContent({
+          ...content,
+          problem_code,
+        });
+      }
+      return <h1> Submit Problem : {problem_code}</h1>;
+    } else {
+      return <h1> Code, Compile & Run </h1>;
+    }
   };
 
   const handleSubmit = (event) => {
@@ -32,16 +50,21 @@ function Submit() {
             marginTop: 100,
           }}
         >
+          {loadComponent()}
           <div>
-            <select
-              name="language"
-              value={content.language}
-              onChange={handleInputChange}
-            >
-              <option value="c">C</option>
-              <option value="cpp">C++ </option>
-              <option value="python">Python</option>
-            </select>
+            <h4>
+              {" "}
+              Choose Language
+              <select
+                name="language"
+                value={content.language}
+                onChange={handleInputChange}
+              >
+                <option value="c">C</option>
+                <option value="cpp">C++ </option>
+                <option value="python">Python</option>
+              </select>
+            </h4>
             <Codemirror
               content={content}
               setContent={setContent}
