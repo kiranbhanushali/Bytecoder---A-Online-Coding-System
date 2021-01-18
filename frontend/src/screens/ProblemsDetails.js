@@ -12,7 +12,7 @@ const ProblemsDetails = (props) => {
   console.log(problem);
   const submitProblem = () => {
     // redirect to the submit page
-    props.history.push("/run", { problem });
+    props.history.push("/submit", { problem });
   };
   return (
     // <div>

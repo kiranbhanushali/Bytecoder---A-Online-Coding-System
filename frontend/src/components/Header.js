@@ -66,7 +66,7 @@ const Header = () => {
               </a>
             </li>
             <li className="nav-items px-1">
-              <a href="/run" className="btn btn-primary rounded">
+              <a href="/submit" className="btn btn-primary rounded">
                 {" "}
                 Code Compile Run{" "}
               </a>

@@ -24,7 +24,6 @@ function App() {
           <Route exact path="/problems" exact component={Problems} />
           <Route exact path="/problem/:id" component={ProblemsDetails} />
           <Route exact path="/profile" component={Profile} />
-          <Route exact path="/run" component={Run} />
           <Route exact path="/submit" component={Submit} />
           <Route exact path="/addproblem" component={AddProblem} />
           <Route exact path="/dev" component={Temp} />

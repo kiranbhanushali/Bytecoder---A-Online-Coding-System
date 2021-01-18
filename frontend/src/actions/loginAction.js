@@ -5,7 +5,7 @@ import { loginRequest, loginSuccess, loginError, logout } from "./login";
 
 export function loginF(dispatch, data) {
   dispatch(loginRequest());
-  axios
+  api
     .post(BASE_API_URL + "/auth/login", data)
     .then(function (response) {
       console.log(response);
