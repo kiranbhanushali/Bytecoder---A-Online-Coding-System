@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/bytecode-logo.png";
 import { Redirect } from "react-router";
-import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/login";
-
+import { Link } from 'react-router-dom';
+import './Header.css'
 const Authhandle = () => {
   const isLogged = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
@@ -14,30 +14,30 @@ const Authhandle = () => {
   };
   if (isLogged) {
     return (
-      <div>
-        <li className="nav-items px-1">
-          <a onClick={onClickLogout} className="btn btn-primary rounded">
+      <div className="header_nav">
+        <div className="header_option">
+          <a onClick={onClickLogout} className="btn btn-outline-dark">
             {" "}
-            Logout{" "}
+      Logout{" "}
           </a>
-        </li>
+        </div>
       </div>
     );
   } else {
     return (
-      <div className="navbar-nav">
-        <li className="nav-items px-1">
-          <a href="/login" className="btn btn-primary rounded">
+      <div className="header_nav">
+        <div className="header_option">
+          <a href="/login" className="btn btn-outline-dark">
             {" "}
             Login{" "}
           </a>
-        </li>
-        <li className="nav-items px-1">
-          <a href="/register" className="btn btn-primary rounded">
+        </div>
+        <div className="header_option">
+          <a href="/register" className="btn btn-outline-dark">
             {" "}
             Register{" "}
           </a>
-        </li>
+        </div>
       </div>
     );
   }
@@ -45,43 +45,34 @@ const Authhandle = () => {
 
 const Header = () => {
   return (
-    <div className="navbar">
-      <nav className="container-fluid navbar px-5   bg-light ">
-        <div className="nav mx-5">
-          <a href="/">
-            <img
-              className="navbar-brand"
-              src={logo}
-              height="80"
-              alt="logo"
-            ></img>{" "}
+    <div className="header">
+      <Link to="/">
+        <img className="header_logo" src={logo} />
+      </Link>
+      <div className="header_nav">
+        <div className="header_option">
+          <a href="/problems" className="btn btn-outline-dark">
+            {" "}
+                Problems{" "}
           </a>
         </div>
-        <div className="nav" className="nav_buttons">
-          <ul className="nav inline">
-            <li className="nav-items px-1">
-              <a href="/problems" className="btn btn-primary rounded">
-                {" "}
-                Problems{" "}
-              </a>
-            </li>
-            <li className="nav-items px-1">
-              <a href="/submit" className="btn btn-primary rounded">
-                {" "}
+        <div className="header_option">
+          <a href="/submit" className="btn btn-outline-dark">
+            {" "}
                 Code Compile Run{" "}
-              </a>
-            </li>
-            <li className="nav-items px-1">
-              <a href="/profile" className="btn btn-primary rounded">
-                {" "}
-                Profile{" "}
-              </a>
-            </li>
-            {Authhandle()}
-          </ul>
+          </a>
+
         </div>
-      </nav>
+        <div className="header_option">
+          <a href="/profile" className="btn btn-outline-dark">
+            {" "}
+                Profile{" "}
+          </a>
+        </div>
+        {Authhandle()}
+      </div>
     </div>
+
   );
 };
 
