@@ -1,20 +1,22 @@
 {
-  "name": "bytecoder---a-online-coding-system",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": " cd frontend && npm i && cd .. && cd backend && npm i",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kiranbhanushali/Bytecoder---A-Online-Coding-System.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kiranbhanushali/Bytecoder---A-Online-Coding-System/issues"
-  },
-  "homepage": "https://github.com/kiranbhanushali/Bytecoder---A-Online-Coding-System#readme"
+    "name": "bytecoder---a-online-coding-system",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": " cd  backend && npm i && cd ..",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "heroku-postbuild": "cd frontend && npm install && npm run build && cd .. ",
+        "start": " cd backend && npm run start && cd .."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kiranbhanushali/Bytecoder---A-Online-Coding-System.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/kiranbhanushali/Bytecoder---A-Online-Coding-System/issues"
+    },
+    "homepage": "https://github.com/kiranbhanushali/Bytecoder---A-Online-Coding-System#readme"
 }
