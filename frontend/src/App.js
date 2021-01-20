@@ -12,6 +12,7 @@ import Profile from './screens/Profile'
 import Register from './screens/Register'
 import Submit from './screens/Submit'
 import Temp from './screens/Temp'
+require('dotenv').config()
 function App() {
     document.title = 'Bytecoders'
     return (
