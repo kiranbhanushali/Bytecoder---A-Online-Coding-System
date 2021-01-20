@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {addProblemF} from '../actions/addProblemAction'
+import { addProblemF } from '../actions/addProblemAction'
+import "./theme.css"
 export default function AddProblem() {
     const dispatch = useDispatch();
     const [newProblem, setNewProblem] = useState({
@@ -47,7 +48,7 @@ export default function AddProblem() {
     };
 
     return (
-        <div class="container">
+        <div class="mycontainer">
             <h2 class="text-center">Add Problem</h2>
             <form onSubmit={handleSubmit}>
                 <div class="form-group">

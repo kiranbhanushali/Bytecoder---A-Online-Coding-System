@@ -2,6 +2,8 @@ import React, { Component, useState } from "react";
 import Codemirror from "../components/Codemirror";
 import { useDispatch, useSelector } from "react-redux";
 import { submitF } from "../actions/submitAction";
+import "./theme.css"
+
 function Submit(props) {
   const [content, setContent] = useState({
     code: "",
@@ -38,56 +40,58 @@ function Submit(props) {
   };
 
   return (
-    <div className="editor-form">
-      <form onSubmit={handleSubmit}>
-        <div
-          className="editor "
-          style={{
-            textAlign: "left",
-            margin: "auto",
-            width: "70%",
-            padding: 10,
-            marginTop: 100,
-          }}
-        >
-          {loadComponent()}
-          <div>
-            <h4>
-              {" "}
+    <div className="mycontainer">
+      <div className="editor-form">
+        <form onSubmit={handleSubmit}>
+          <div
+            className="editor "
+            style={{
+              textAlign: "left",
+              margin: "auto",
+              width: "70%",
+              padding: 0,
+              marginTop: 0,
+            }}
+          >
+            {loadComponent()}
+            <div>
+              <h4>
+                {" "}
               Choose Language
               <select
-                name="language"
-                value={content.language}
+                  name="language"
+                  value={content.language}
+                  onChange={handleInputChange}
+                >
+                  <option value="c">C</option>
+                  <option value="cpp">C++ </option>
+                  <option value="python">Python</option>
+                </select>
+              </h4>
+              <Codemirror
+                content={content}
+                setContent={setContent}
                 onChange={handleInputChange}
-              >
-                <option value="c">C</option>
-                <option value="cpp">C++ </option>
-                <option value="python">Python</option>
-              </select>
-            </h4>
-            <Codemirror
-              content={content}
-              setContent={setContent}
-              onChange={handleInputChange}
-            />
+              />
+            </div>
           </div>
-        </div>
-        <div>
-          <div class="d-flex justify-content-center m-4">
-            <label for="myfile">Or Select a file:</label>
-            <input
-              type="file"
-              id="myfile"
-              name="myfile"
-              onChange={handleInputChange}
-            />
-          </div>
+          <div>
+            <div class="d-flex justify-content-center m-4">
+              <label for="myfile">Or Select a file:</label>
+              <input
+                type="file"
+                id="myfile"
+                name="myfile"
+                onChange={handleInputChange}
+              />
+            </div>
 
-          <div class="d-flex justify-content-center">
-            <button>Submit</button>
+            <div class="d-flex justify-content-center">
+              <button>Submit</button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

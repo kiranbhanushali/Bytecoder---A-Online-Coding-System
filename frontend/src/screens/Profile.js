@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import Spinner from "../components/Spinner";
+import "./theme.css"
 
 const Profile = (props) => {
   const userdata = useSelector((state) => state.auth);
@@ -14,7 +15,7 @@ const Profile = (props) => {
   } else {
     console.log(userdata);
     return (
-      <div className="container">
+      <div className="mycontainer">
         <div className="main-body">
           <div className="row gutters-sm">
             <div className="col-md-4 mb-3">
