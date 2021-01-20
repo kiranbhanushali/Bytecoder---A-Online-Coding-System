@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/login";
 import { Link } from 'react-router-dom';
 import './Header.css'
+
 const Authhandle = () => {
   const isLogged = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const Authhandle = () => {
     localStorage.removeItem("token");
     dispatch(logout());
   };
+  
   if (isLogged) {
     return (
       <div className="header_nav">
@@ -22,6 +24,7 @@ const Authhandle = () => {
           </a>
         </div>
       </div>
+      
     );
   } else {
     return (
