@@ -84,14 +84,6 @@ const verifyJWT = (req, res, next) => {
     }
 }
 
-// api routes
-app.use('/', indexRouter)
-// app.use("/api/v1",verifyJWT, restRouter);
-app.use('/api/v1/auth', authRouter)
-app.use('/api/v1', restRouter)
-app.use('/api/v1', submitRouter)
-app.use('/api/v1', verifyJWT, profileRouter)
-
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '/frontend/build')))
 
@@ -103,6 +95,14 @@ if (process.env.NODE_ENV === 'production') {
         res.send('API is running....')
     })
 }
+// api routes
+app.use('/api', indexRouter)
+// app.use("/api/v1",verifyJWT, restRouter);
+app.use('/api/v1/auth', authRouter)
+app.use('/api/v1', restRouter)
+app.use('/api/v1', submitRouter)
+app.use('/api/v1', verifyJWT, profileRouter)
+
 // create server
 var server = http.createServer(app)
 
