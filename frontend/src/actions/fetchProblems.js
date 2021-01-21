@@ -8,7 +8,7 @@ import {
 import api, { BASE_API_URL } from '../api'
 function fetchProblems(dispatch) {
     dispatch(fetchProblemsPending())
-    api.get(BASE_API_URL + '/auth/login')
+    api.get(BASE_API_URL + '/problems')
         .then(function (response) {
             dispatch(fetchProblemsSuccess(response.data))
             return response
