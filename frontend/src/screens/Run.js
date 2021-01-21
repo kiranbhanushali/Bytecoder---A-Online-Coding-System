@@ -2,6 +2,7 @@ import "codemirror/keymap/sublime";
 import "codemirror/theme/monokai.css";
 import Codemirror from "../components/Codemirror";
 import React, { useState } from "react";
+import "./theme.css"
 
 import UseForm from "../components/UseForm";
 var api = {
@@ -10,10 +11,10 @@ var api = {
 function Run(props) {
     // for mode of editor
     const [selectedOption, setSelectedOption] = useState("c");
-    const { inputs ,  handleInputChange, handleSubmit } = UseForm({
-        myfile:"",
-        code:"",
-        type:"RUN"
+    const { inputs, handleInputChange, handleSubmit } = UseForm({
+        myfile: "",
+        code: "",
+        type: "RUN"
     });
     const [code, setCode] = useState("//write code here ");
     const loadComponent = () => {
@@ -28,18 +29,9 @@ function Run(props) {
         }
     };
     return (
-        <div className="editor-form">
+        <div className="mycontainer">
             <form onSubmit={handleSubmit}>
-                <div
-                    className="editor "
-                    style={{
-                        textAlign: "left",
-                        margin: "auto",
-                        width: "70%",
-                        padding: 10,
-                        marginTop: 100,
-                    }}
-                >
+                <div>
                     {loadComponent()}
 
                     <div>
@@ -77,6 +69,7 @@ function Run(props) {
                 </div>
             </form>
         </div>
+
     );
 }
 

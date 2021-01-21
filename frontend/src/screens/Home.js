@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./home.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import "./theme.css"
+
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -23,10 +25,21 @@ const responsive = {
 };
 class Home extends Component {
   render() {
-    const category = ["Array", "String", "Searching", "Stack & queues", "Number-Theory", "Trees", "Graph-Theory", "Hashing", "DSU", "Greedy", "Dynamic-Programming", "Bit-Manipulation"];
+    const category = [{ name: "Array", id: "array", img: "https://media-fastly.hackerearth.com/media/codemonk/codemonk-arrays-strings/images/e77429ac-9-4_1.png" },
+    { name: "String", id: "string", img: "https://media-fastly.hackerearth.com/media/codemonk/codemonk-sorting/images/c56712c0-9-2_1.png" },
+    { name: "Searching", id: "searching", img: "https://media-fastly.hackerearth.com/media/codemonk/searching-1/images/431f29ae-9-5_1.png" },
+    { name: "Stack & queues", id: "stackqueue", img: "https://media-fastly.hackerearth.com/media/codemonk/stacks-queues-2/images/646d80f6-9-6_1.png" },
+    { name: "Number-Theory", id: "numbertheory", img: "https://media-fastly.hackerearth.com/media/codemonk/number-theory-part-i-2/images/15ca10b4-9-9_1.png" },
+    { name: "Trees", id: "tree", img: "https://media-fastly.hackerearth.com/media/codemonk/trees/images/1ec0258a-9-8_1.png" },
+    { name: "Graph-Theory", id: "graph", img: "https://media-fastly.hackerearth.com/media/codemonk/graph-theory-part-i-1/images/6fc39412-9-7_1.png" },
+    { name: "Hashing", id: "hashing", img: "https://media-fastly.hackerearth.com/media/codemonk/hashing-1/images/a9da97e8-b-Hashing_1.png" },
+    { name: "DSU", id: "dsu", img: "https://media-fastly.hackerearth.com/media/codemonk/disjoint-set-union-union-find-1/images/ee858f54-b-Disjoint-Set-Union_1.png" },
+    { name: "Greedy", id: "gredy", img: "https://media-fastly.hackerearth.com/media/codemonk/greedy-technique-1/images/4227441afa-Greedy-Technique_1.png" },
+    { name: "Dynamic-Programming", id: "dp", img: "https://media-fastly.hackerearth.com/media/codemonk/dynamic-programming-part-i/images/8c325b3efa-Dynamic-Programming_2.png" },
+    { name: "Bit-Manipulation", id: "bitwise", img: "https://media-fastly.hackerearth.com/media/codemonk/bit-manipulation-1/images/206a7390fa-Bit-Manipulation_1.png" }];
 
     return (
-      <div className="full">
+      <div className="mycontainer">
         <div style={{ textAlign: "center" }}>
           <main role="main">
             <div class="jumbotron1">
@@ -39,7 +52,7 @@ class Home extends Component {
                   to create something more unique.
               </p>
                 <p>
-                  <a class="btn btn-primary btn-lg" href="#" role="button">
+                  <a class="btn btn-primary btn-lg" href="/problems" role="button">
                     All Problems &raquo;
                 </a>
                 </p>
@@ -70,16 +83,13 @@ class Home extends Component {
 
                       return (
                         <div className="card">
-                          <h3> {cat} </h3>
+                          <h3> {cat.name} </h3>
                           <div className="imsp">
-                            <img
-                              src="https://media-fastly.hackerearth.com/media/codemonk/codemonk-arrays-strings/images/e77429ac-9-4_1.png"
-                              alt="Checkpoint - 2"
-                            ></img>
+                            <img src={cat.img} alt={cat.name}></img>
                           </div>
 
                           <p>
-                            <a class="btn btn-outline-light" href="#" role="button">
+                            <a class="btn btn-outline-light" href={`/problems?cat=${cat.id}`} role="button">
                               View Problems &raquo;
                               </a>
                           </p>

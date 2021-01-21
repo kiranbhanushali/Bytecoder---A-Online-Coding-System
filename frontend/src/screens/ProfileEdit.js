@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PROBLEMAPI from "../api/problems";
 import axios from "axios";
 import Spinner from "../components/Spinner";
+import "./theme.css"
+
 const Profile = (props) => {
     const [userdata, setUserdata] = React.useState(null);
     React.useEffect(() => {
@@ -26,7 +28,7 @@ const Profile = (props) => {
     } else {
         console.log(userdata);
         return (
-            <div className="container">
+            <div className="mycontainer">
                 <div className="main-body">
                     <div className="row gutters-sm">
                         <div className="col-md-4 mb-3">
@@ -39,10 +41,10 @@ const Profile = (props) => {
                                             className="rounded-circle"
                                             width="150"
                                         />
-            <div className="mt-3">
+                                        <div className="mt-3">
                                             <h4>
                                                 {userdata.username}
-                                                                                          </h4>
+                                            </h4>
                                         </div>
                                     </div>
                                 </div>
@@ -56,9 +58,9 @@ const Profile = (props) => {
                                             <h6 className="mb-0">Full Name</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                                {userdata.firstname +
-                                                    " " +
-                                                    userdata.lastname}
+                                            {userdata.firstname +
+                                                " " +
+                                                userdata.lastname}
                                         </div>
                                     </div>
                                     <div className="row">
@@ -74,7 +76,7 @@ const Profile = (props) => {
                                             <h6 className="mb-0">Country</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                            {userdata.country? userdata.country:"India"}
+                                            {userdata.country ? userdata.country : "India"}
                                         </div>
                                     </div>
                                 </div>
@@ -82,12 +84,12 @@ const Profile = (props) => {
                             <div className="card btn-box-row row-fluid">
                                 <a href="#" className="btn-box big span4">
                                     <i className=" icon-random"></i>
-                                    <b> {userdata.meta&&userdata.meta.total_submissions ? userdata.meta.total_submissions : 0 }   </b>
+                                    <b> {userdata.meta && userdata.meta.total_submissions ? userdata.meta.total_submissions : 0}   </b>
                                     <p className="text-muted">Total Submissions</p>
                                 </a>
                                 <a href="#" className="btn-box big span4">
                                     <i className="icon-user"></i>
-                                    <b> {userdata.meta&&userdata.meta.accuracy ? userdata.meta.accuracy : 0 }   </b>
+                                    <b> {userdata.meta && userdata.meta.accuracy ? userdata.meta.accuracy : 0}   </b>
                                     <b>  </b>
                                     <p className="text-muted">Accuracy</p>
                                 </a>
