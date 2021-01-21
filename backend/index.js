@@ -92,6 +92,17 @@ app.use('/api/v1', restRouter)
 app.use('/api/v1', submitRouter)
 app.use('/api/v1', verifyJWT, profileRouter)
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '/frontend/build')))
+
+    app.get('*', (req, res) =>
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+    )
+} else {
+    app.get('/', (req, res) => {
+        res.send('API is running....')
+    })
+}
 // create server
 var server = http.createServer(app)
 
