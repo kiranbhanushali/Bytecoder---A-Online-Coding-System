@@ -5,10 +5,10 @@ import {
     fetchProblemsSuccess,
 } from './problems'
 
+import api, { BASE_API_URL } from '../api'
 function fetchProblems(dispatch) {
     dispatch(fetchProblemsPending())
-    axios
-        .get('http://localhost:5000/api/v1/problems')
+    api.get(BASE_API_URL + '/auth/login')
         .then(function (response) {
             dispatch(fetchProblemsSuccess(response.data))
             return response
