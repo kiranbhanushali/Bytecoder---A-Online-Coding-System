@@ -1,33 +1,33 @@
-import "codemirror/keymap/sublime";
-import "codemirror/theme/monokai.css";
-import Codemirror from "../components/Codemirror";
-import React, { useState } from "react";
-import "./theme.css"
+import 'codemirror/keymap/sublime'
+import 'codemirror/theme/monokai.css'
+import React, { useState } from 'react'
+import Codemirror from '../components/Codemirror'
+import UseForm from '../components/UseForm'
+import './theme.css'
 
-import UseForm from "../components/UseForm";
 var api = {
-    run: "http://localhost:5000/api/v1/run",
-};
+    run: 'http://localhost:5000/api/v1/run',
+}
 function Run(props) {
     // for mode of editor
-    const [selectedOption, setSelectedOption] = useState("c");
+    const [selectedOption, setSelectedOption] = useState('c')
     const { inputs, handleInputChange, handleSubmit } = UseForm({
-        myfile: "",
-        code: "",
-        type: "RUN"
-    });
-    const [code, setCode] = useState("//write code here ");
+        myfile: '',
+        code: '',
+        type: 'RUN',
+    })
+    const [code, setCode] = useState('//write code here ')
     const loadComponent = () => {
         if (
             props.history.location.state &&
             props.history.location.state.problem
         ) {
-            var problem = props.history.location.state.problem;
-            return <h1> Submit Problem : {problem[0].code}</h1>;
+            var problem = props.history.location.state.problem
+            return <h1> Submit Problem : {problem[0].code}</h1>
         } else {
-            return <h1> Code, Compile & Run </h1>;
+            return <h1> Code, Compile & Run </h1>
         }
-    };
+    }
     return (
         <div className="mycontainer">
             <form onSubmit={handleSubmit}>
@@ -69,8 +69,7 @@ function Run(props) {
                 </div>
             </form>
         </div>
-
-    );
+    )
 }
 
-export default Run;
+export default Run
