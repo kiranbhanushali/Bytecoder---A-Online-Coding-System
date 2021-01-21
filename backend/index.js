@@ -7,7 +7,7 @@ var cors = require('cors')
 
 // databse
 var db = require('./models')
-
+require('dotenv').config()
 //file uplaodf
 const fileUpload = require('express-fileupload')
 app.use(fileUpload())
@@ -95,7 +95,7 @@ app.use('/api/v1', verifyJWT, profileRouter)
 // create server
 var server = http.createServer(app)
 
-server.listen(5000)
+server.listen(process.env.PORT || 5000)
 
 server.on('error', onError)
 server.on('listening', onListening)
