@@ -16,6 +16,7 @@ const allowedOrigins = [
     'http://localhost:3000',
     'http://localhost:5000',
     'http://bytecoders-app.herokuapp.com',
+    'https://bytecoders-app.herokuapp.com',
 ]
 app.use(
     cors({
@@ -83,20 +84,6 @@ const verifyJWT = (req, res, next) => {
         })
     }
 }
-
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../frontend/build')))
-
-    app.get('*', (req, res) =>
-        res.sendFile(
-            path.resolve(__dirname, '../frontend', 'build', 'index.html')
-        )
-    )
-} else {
-    app.get('/', (req, res) => {
-        res.send('API is running....')
-    })
-}
 // api routes
 app.use('/api', indexRouter)
 // app.use("/api/v1",verifyJWT, restRouter);
@@ -112,6 +99,20 @@ server.listen(process.env.PORT || 5000)
 
 server.on('error', onError)
 server.on('listening', onListening)
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../frontend/build')))
+
+    app.get('*', (req, res) =>
+        res.sendFile(
+            path.resolve(__dirname, '../frontend', 'build', 'index.html')
+        )
+    )
+} else {
+    app.get('/', (req, res) => {
+        res.send('API is running....')
+    })
+}
 
 function onError(error) {
     throw error
