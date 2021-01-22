@@ -1,11 +1,25 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import "./theme.css"
+import { storage } from "../base.js"
+import { uploadImage } from "../actions/profileAction";
+import { useDispatch, useSelector } from 'react-redux'
 
 const Profile = (props) => {
   const userdata = useSelector((state) => state.auth);
+  const dispatch = useDispatch()
+
+  const [file, setFile] = useState(null);
+
+  function handleChange(e) {
+    setFile(e.target.files[0]);
+  }
+
+  function handleUpload(e) {
+    e.preventDefault();
+    uploadImage(dispatch, file,userdata.username)
+  }
 
   if (userdata.isLoggedIn === false) {
     alert("Please Login ");
@@ -21,20 +35,27 @@ const Profile = (props) => {
             <div className="col-md-4 mb-3">
               <div className="card">
                 <div className="card-body">
+
                   <div className="d-flex flex-column align-items-center text-center">
                     <img
-                      src="https://bootdey.com/img/Content/avatar/avatar7.png"
+
+                      src={userdata.imageUrl}
+
                       alt="Admin"
                       className="rounded-circle"
                       width="150"
                     />
                     <div className="mt-3">
                       <h4>{userdata.username}</h4>
+
+
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
+
             <div className="col-md-8">
               <div className="card mb-3">
                 <div className="card-body">
@@ -83,6 +104,10 @@ const Profile = (props) => {
             </div>
           </div>
         </div>
+        <form onSubmit={handleUpload}>
+          <input type="file" onChange={handleChange} />
+          <button disabled={!file}>upload to firebase</button>
+        </form>
       </div>
     );
   }

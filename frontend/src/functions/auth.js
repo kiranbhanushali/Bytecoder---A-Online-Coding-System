@@ -2,7 +2,7 @@ import axios from "axios";
 import API from "../api";
 
 export const LoginF = (data) => {
-    
+
     var encodeURI = API.BASE + "auth/login";
     axios
         .post(encodeURI, data)
@@ -15,6 +15,7 @@ export const LoginF = (data) => {
                 let token = response.data.token.split(' ');
                 console.log("token" + token);
                 localStorage.setItem("token", token[1]);
+                alert("hello");
                 window.location.reload();
             }
         );
