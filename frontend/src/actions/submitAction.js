@@ -1,12 +1,5 @@
 import api, { BASE_API_URL } from '../api'
-import axios from 'axios'
-
-import {
-    submitRequest,
-    submitSuccess,
-    submitResponse,
-    submitError,
-} from './submit'
+import { submitError, submitRequest, submitResponse } from './submit'
 
 export function submitF(dispatch, data) {
     dispatch(submitRequest())

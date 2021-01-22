@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Spinner from "../components/Spinner";
-import "./theme.css"
-import { storage } from "../base.js"
+import "./theme.css";
+import { storage } from "../base.js";
 import { uploadImage } from "../actions/profileAction";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 
 const Profile = (props) => {
   const userdata = useSelector((state) => state.auth);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [file, setFile] = useState(null);
 
@@ -18,7 +18,9 @@ const Profile = (props) => {
 
   function handleUpload(e) {
     e.preventDefault();
-    uploadImage(dispatch, file, userdata.username)
+
+    uploadImage(dispatch, file, userdata.username);
+
   }
 
   if (userdata.isLoggedIn === false) {
@@ -35,26 +37,20 @@ const Profile = (props) => {
             <div className="col-md-4 mb-3">
               <div className="card">
                 <div className="card-body">
-
                   <div className="d-flex flex-column align-items-center text-center">
                     <img
-
                       src={userdata.imageUrl}
-
                       alt="Admin"
                       className="rounded-circle"
                       width="150"
                     />
                     <div className="mt-3">
                       <h4>{userdata.username}</h4>
-
-
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
 
             <div className="col-md-8">
               <div className="card mb-3">
