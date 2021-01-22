@@ -1,10 +1,11 @@
 const initialState = {
+    imageUrl: "https://bootdey.com/img/Content/avatar/avatar7.png",
     username: null,
     firstname: null,
     lastname: null,
     email: null,
     isLoggedIn: false,
-    error: { login: null, register: null },
+    error: { login: null, register: null, uploadImage: null },
     message: null,
     token: null,
     pending: false,
@@ -29,6 +30,7 @@ export default function authReducer(state = initialState, action) {
                 message: action.msg,
                 error: null,
                 pending: false,
+
             }
         case 'LOGIN_ERROR':
             return {
@@ -81,7 +83,33 @@ export default function authReducer(state = initialState, action) {
                 ...state,
                 error: null,
             }
+        case 'UPLOAD_IMAGE_PENDING':
+            return {
+                ...state,
+                pending: true,
+            }
+        case 'UPLOAD_IMAGE_ERROR':
+            return {
+                ...state,
+                error: {
+                    login: state?.error?.login,
+                    register: state?.error?.register,
+                    uploadImage: action.payload
+                },
+                pending: false,
+            }
+        case 'UPLOAD_IMAGE_SUCCESS':
+            return {
+                ...state,
+                imageUrl: action.payload,
+                pending: false
+
+            }
         default:
             return state
+
     }
 }
+
+
+

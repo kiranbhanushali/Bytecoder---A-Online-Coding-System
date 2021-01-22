@@ -16,3 +16,4 @@ export function loginF(dispatch, data) {
             dispatch(loginError(error.response.data.msg))
         })
 }
+
