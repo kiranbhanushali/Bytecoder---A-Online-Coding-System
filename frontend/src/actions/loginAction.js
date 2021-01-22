@@ -1,7 +1,5 @@
 import api, { BASE_API_URL } from '../api'
-import axios from 'axios'
-
-import { loginRequest, loginSuccess, loginError, logout } from './login'
+import { loginError, loginRequest, loginSuccess } from './login'
 
 export function loginF(dispatch, data) {
     dispatch(loginRequest())

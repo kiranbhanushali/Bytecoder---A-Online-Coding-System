@@ -1,5 +1,5 @@
-import api, { BASE_API_URL } from '../api'
 import axios from 'axios'
+import { BASE_API_URL } from '../api'
 import { loginF } from './loginAction'
 import { registerError, registerRequest, registerSuccess } from './register'
 export function registerF(dispatch, data) {

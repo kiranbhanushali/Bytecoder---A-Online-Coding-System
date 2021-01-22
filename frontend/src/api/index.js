@@ -1,6 +1,9 @@
-import axios from "axios";
-export const BASE_API_URL = "http://localhost:5000/api/v1";
+import axios from 'axios'
 
-axios.defaults.headers.common["authorization"] = localStorage.getItem("token");
+export const BASE_API_URL = process.env.BACKEND_URL
+    ? process.env.BACKEND_URL
+    : '/api/v1'
 
-export default axios;
+axios.defaults.headers.common['authorization'] = localStorage.getItem('token')
+
+export default axios

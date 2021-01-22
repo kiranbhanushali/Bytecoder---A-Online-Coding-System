@@ -1,27 +1,26 @@
+import axios from 'axios'
 import {
-  fetchProblemsSuccess,
-  fetchProblemsError,
-  fetchProblemsPending,
-} from "./problems";
+    fetchProblemsError,
+    fetchProblemsPending,
+    fetchProblemsSuccess,
+} from './problems'
 
-import api, { BASE_API_URL } from "../api";
-import axios from "axios";
+import api, { BASE_API_URL } from '../api'
 function fetchProblems(dispatch) {
-  dispatch(fetchProblemsPending());
-  axios
-    .get("http://localhost:5000/api/v1/problems")
-    .then(function (response) {
-      dispatch(fetchProblemsSuccess(response.data));
-      return response;
-    })
-    .catch(function (error) {
-      // handle error
-      dispatch(fetchProblemsError(error));
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
+    dispatch(fetchProblemsPending())
+    api.get(BASE_API_URL + '/problems')
+        .then(function (response) {
+            dispatch(fetchProblemsSuccess(response.data))
+            return response
+        })
+        .catch(function (error) {
+            // handle error
+            dispatch(fetchProblemsError(error))
+            console.log(error)
+        })
+        .then(function () {
+            // always executed
+        })
 }
 
-export default fetchProblems;
+export default fetchProblems
