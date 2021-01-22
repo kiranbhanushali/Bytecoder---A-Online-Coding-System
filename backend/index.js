@@ -86,7 +86,7 @@ app.use("/", indexRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1", restRouter);
 app.use("/api/v1", submitRouter);
-app.use("/api/v1", verifyJWT, profileRouter);
+app.use("/api/v1", profileRouter);
 
 // create server
 var server = http.createServer(app);

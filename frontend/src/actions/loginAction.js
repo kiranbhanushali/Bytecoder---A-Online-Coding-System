@@ -7,7 +7,7 @@ export function loginF(dispatch, data) {
     dispatch(loginRequest())
     api.post(BASE_API_URL + '/auth/login', data)
         .then(function (response) {
-            console.log(response)
+            console.log("response", response)
             let token = response.data.token
             localStorage.setItem('token', token)
             dispatch(loginSuccess(token, response.data))
