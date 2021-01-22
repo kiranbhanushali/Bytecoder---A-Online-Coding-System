@@ -27,6 +27,7 @@ exports.register = (req, res) => {
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             email: req.body.email,
+            imageUrl: req.body.imageUrl,
         })
 
         // need to something for this
@@ -45,6 +46,7 @@ exports.register = (req, res) => {
                 firstname: newUser.firstname,
                 lastname: newUser.lastname,
                 email: newUser.email,
+                imageUrl: newUser.imageUrl,
                 success: true,
                 msg: 'Successful created new user.',
             })
@@ -87,6 +89,7 @@ exports.login = (req, res) => {
                                 success: true,
                                 token: 'JWT ' + token,
                                 msg: 'login successful',
+                                imageUrl: user.imageUrl,
                             })
                         } else {
                             res.status(403).send({

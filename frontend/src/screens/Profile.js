@@ -18,7 +18,9 @@ const Profile = (props) => {
 
   function handleUpload(e) {
     e.preventDefault();
+
     uploadImage(dispatch, file, userdata.username);
+
   }
 
   if (userdata.isLoggedIn === false) {

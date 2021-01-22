@@ -87,10 +87,12 @@ const verifyJWT = (req, res, next) => {
 // api routes
 app.use('/api', indexRouter)
 // app.use("/api/v1",verifyJWT, restRouter);
+
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1', restRouter)
 app.use('/api/v1', submitRouter)
 app.use('/api/v1', verifyJWT, profileRouter)
+
 
 // create server
 var server = http.createServer(app)

@@ -24,6 +24,10 @@ var UserSchema = new Schema({
     type: String,
     required: true,
   },
+  imageUrl: {
+    type: String,
+    default: "https://bootdey.com/img/Content/avatar/avatar7.png",
+  },
   isAdmin: {
     type: Boolean,
     default: false,

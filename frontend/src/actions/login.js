@@ -13,6 +13,7 @@ export function loginSuccess(token, data) {
         lastname: data.lastname,
         email: data.email,
         msg: data.msg,
+        imageUrl: data.imageUrl,
     }
 }
 

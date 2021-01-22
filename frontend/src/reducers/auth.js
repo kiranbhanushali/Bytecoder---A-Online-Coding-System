@@ -1,5 +1,5 @@
 const initialState = {
-    imageUrl: "https://bootdey.com/img/Content/avatar/avatar7.png",
+    imageUrl: null,
     username: null,
     firstname: null,
     lastname: null,
@@ -30,6 +30,7 @@ export default function authReducer(state = initialState, action) {
                 message: action.msg,
                 error: null,
                 pending: false,
+                imageUrl: action.imageUrl,
 
             }
         case 'LOGIN_ERROR':
