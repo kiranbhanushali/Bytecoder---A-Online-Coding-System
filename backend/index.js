@@ -71,7 +71,7 @@ const verifyJWT = (req, res, next) => {
     console.log(req.headers['authorization'])
     if (req.headers['authorization'] === undefined) res.send('enter token')
 
-    const token = req.headers['authorization']
+    const token = req.headers['authorization'].split(' ')[1]
     if (!token) {
         res.json({ success: false })
     } else {
@@ -91,7 +91,7 @@ app.use('/api', indexRouter)
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1', restRouter)
 app.use('/api/v1', submitRouter)
-app.use('/api/v1', verifyJWT, profileRouter)
+app.use('/api/v1', profileRouter)
 
 // create server
 var server = http.createServer(app)
