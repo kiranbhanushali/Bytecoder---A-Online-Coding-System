@@ -76,7 +76,7 @@ const verifyJWT = (req, res, next) => {
         res.json({ success: false })
     } else {
         jwt.verify(token, 'mysecretkey', (err, decoded) => {
-            if (err) res.json({ success: false })
+            if (err) res.json({ success: false, msg: 'Token is not valid!' })
             else {
                 req.decoded = decoded
                 next()
@@ -92,7 +92,6 @@ app.use('/api/v1/auth', authRouter)
 app.use('/api/v1', restRouter)
 app.use('/api/v1', submitRouter)
 app.use('/api/v1', verifyJWT, profileRouter)
-
 
 // create server
 var server = http.createServer(app)
