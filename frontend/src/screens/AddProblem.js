@@ -44,6 +44,7 @@ export default function AddProblem() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        if( event.target.name==="submit")
         addProblemF(newProblem);
     };
 
@@ -144,7 +145,7 @@ export default function AddProblem() {
                     Add New Testcase
                 </button>
 
-                <button type="submit" class="btn btn-default">
+                <button name="submit" type="submit" class="btn btn-default">
                     Submit
                 </button>
             </form>
