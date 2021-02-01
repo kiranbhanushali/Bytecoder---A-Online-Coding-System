@@ -13,8 +13,10 @@ export default function AddProblem() {
         input: [],
         output: [],
     });
-
+    const [isLoading ,setIsLoading] = useState(false)
     const handleInputChange = (event) => {
+
+        event.preventDefault();
         if (event.target.name === "addCategory") {
             if (newProblem.tmpCategory === "") {
             } else {
@@ -42,16 +44,22 @@ export default function AddProblem() {
             });
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        if( event.target.name==="submit")
-        addProblemF(newProblem);
-    };
-
+console.log( event)
+        if( event.target.name==="submit"){
+        setIsLoading(true)
+        await addProblemF(newProblem);
+        
+        setIsLoading(false);
+ }   };
+    if( isLoading) {
+        return <div> Loading </div>
+    }else 
     return (
         <div class="mycontainer">
             <h2 class="text-center">Add Problem</h2>
-            <form onSubmit={handleSubmit}>
+            <form method="POST">
                 <div class="form-group">
                     <label for="email">Problem Title:</label>
                     <input
@@ -145,7 +153,7 @@ export default function AddProblem() {
                     Add New Testcase
                 </button>
 
-                <button name="submit" type="submit" class="btn btn-default">
+                <button name="submit"  onClick={handleSubmit} type="submit" class="btn btn-default">
                     Submit
                 </button>
             </form>

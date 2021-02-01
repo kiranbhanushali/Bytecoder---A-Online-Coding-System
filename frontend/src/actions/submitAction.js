@@ -6,7 +6,7 @@ export function submitF(dispatch, data) {
     api.post(BASE_API_URL + '/submit', data)
         .then(function (response) {
             console.log(response)
-            alert(response.data.exe.stdout)
+            alert(response.data.stdout)
             dispatch(submitResponse(response.data))
         })
         .catch(function (error) {

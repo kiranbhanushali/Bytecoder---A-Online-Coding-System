@@ -58,12 +58,6 @@ const Header = () => {
                     </a>
                 </div>
                 <div className="header_option">
-                    <a href="/submit" className="btn btn-outline-dark">
-                        {' '}
-                        Code Compile Run{' '}
-                    </a>
-                </div>
-                <div className="header_option">
                     <a href="/profile" className="btn btn-outline-dark">
                         {' '}
                         Profile{' '}

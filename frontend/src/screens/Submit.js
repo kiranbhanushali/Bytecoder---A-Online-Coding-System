@@ -8,7 +8,7 @@ function Submit(props) {
     const [content, setContent] = useState({
         code: '',
         language: 'C',
-        problem_code: '',
+        problemcode: '',
     })
     const dispatch = useDispatch()
     const handleInputChange = (event) => {
@@ -20,14 +20,15 @@ function Submit(props) {
     const loadComponent = () => {
         console.log(props.history)
         if (props.history.location.search) {
-            if (content.problem_code === '') {
-                var problem_code = props.history.location.search.split('=')[1]
+            if (content.problemcode === '') {
+                var problemcode = props.history.location.search.split('=')[1]
+                console.log(problemcode)
                 setContent({
                     ...content,
-                    problem_code,
+                    problemcode,
                 })
             }
-            return <h1> Submit Problem : {problem_code}</h1>
+            return <h1> Submit Problem : {content.problemcode}</h1>
         } else {
             return <h1> Code, Compile & Run </h1>
         }
