@@ -1,5 +1,6 @@
+import { response } from 'express'
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { submitF } from '../actions/submitAction'
 import Codemirror from '../components/Codemirror'
 import './theme.css'
@@ -7,14 +8,17 @@ import './theme.css'
 function Submit(props) {
     const [content, setContent] = useState({
         code: '',
-        language: 'C',
+        language: 'c',
         problemcode: '',
     })
+    const submit = useSelector((state) => state.submit)
     const dispatch = useDispatch()
+
     const handleInputChange = (event) => {
         setContent((prevState) => ({
             ...prevState,
             [event.target.name]: event.target.value,
+
         }))
     }
     const loadComponent = () => {
@@ -66,10 +70,12 @@ function Submit(props) {
                                 >
                                     <option value="c">C</option>
                                     <option value="cpp">C++ </option>
-                                    <option value="python">Python</option>
+                                    <option value="py">Python</option>
                                 </select>
                             </h4>
+
                             <Codemirror
+                                mode={content.language}
                                 content={content}
                                 setContent={setContent}
                                 onChange={handleInputChange}
@@ -90,6 +96,9 @@ function Submit(props) {
                         <div class="d-flex justify-content-center">
                             <button>Submit</button>
                         </div>
+                        <h1>{submit.response ? submit.response.stdout : "hello"}</h1>
+                        <h1>{submit.response ? submit.response.stderr : "hello"}</h1>
+
                     </div>
                 </form>
             </div>
@@ -97,3 +106,10 @@ function Submit(props) {
     )
 }
 export default Submit
+
+
+
+
+
+
+
