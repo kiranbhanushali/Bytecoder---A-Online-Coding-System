@@ -3,7 +3,27 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../actions/login'
 import logo from '../assets/bytecode-logo.png'
+
 import './Header.css'
+
+const AddProblem = () => {
+    const isAdmin = useSelector((state) => state.auth.isAdmin)
+    if (isAdmin) {
+        return (
+            <div className="header_nav">
+                <div className="header_option">
+                    <a href="/addproblem" className="btn btn-outline-dark">
+                        {' '}
+                Addproblem{' '}
+                    </a>
+                </div>
+            </div>
+        )
+    }
+
+
+
+}
 
 const Authhandle = () => {
     const isLogged = useSelector((state) => state.auth.isLoggedIn)
@@ -63,7 +83,9 @@ const Header = () => {
                         Profile{' '}
                     </a>
                 </div>
+                {AddProblem()}
                 {Authhandle()}
+
             </div>
         </div>
     )

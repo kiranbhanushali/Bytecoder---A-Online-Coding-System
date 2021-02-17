@@ -28,6 +28,7 @@ exports.register = (req, res) => {
             lastname: req.body.lastname,
             email: req.body.email,
             imageUrl: req.body.imageUrl,
+            isAdmin: req.body.isAdmin,
         })
 
         // need to something for this
@@ -47,6 +48,8 @@ exports.register = (req, res) => {
                 lastname: newUser.lastname,
                 email: newUser.email,
                 imageUrl: newUser.imageUrl,
+                isAdmin: newUser.isAdmin,
+
                 success: true,
                 msg: 'Successful created new user.',
             })
@@ -86,6 +89,7 @@ exports.login = (req, res) => {
                                 firstname: user.firstname,
                                 lastname: user.lastname,
                                 email: user.email,
+                                isAdmin: user.isAdmin,
                                 success: true,
                                 token: 'JWT ' + token,
                                 msg: 'login successful',

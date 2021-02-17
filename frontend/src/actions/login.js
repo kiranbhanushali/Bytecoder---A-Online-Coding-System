@@ -14,6 +14,7 @@ export function loginSuccess(token, data) {
         email: data.email,
         msg: data.msg,
         imageUrl: data.imageUrl,
+        isAdmin: data.isAdmin,
     }
 }
 

@@ -9,6 +9,7 @@ const initialState = {
     message: null,
     token: null,
     pending: false,
+    isAdmin: false,
 }
 
 export default function authReducer(state = initialState, action) {
@@ -31,6 +32,7 @@ export default function authReducer(state = initialState, action) {
                 error: null,
                 pending: false,
                 imageUrl: action.imageUrl,
+                isAdmin: action.isAdmin,
 
             }
         case 'LOGIN_ERROR':
@@ -54,6 +56,7 @@ export default function authReducer(state = initialState, action) {
                 message: null,
                 error: null,
                 pending: false,
+                isAdmin: false,
             }
         case 'REGISTER_REQUEST':
             return {
