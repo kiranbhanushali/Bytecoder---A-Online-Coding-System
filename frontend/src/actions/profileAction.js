@@ -18,6 +18,7 @@ export function uploadImage(dispatch, data, username) {
             .then((url) => {
                 dispatch(uploadImageSuccess(url))
                 api.post(BASE_API_URL + '/img', {
+                    
                     url: url,
                     username: username,
                 })

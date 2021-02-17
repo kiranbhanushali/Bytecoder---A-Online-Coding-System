@@ -44,14 +44,13 @@ export default function Login() {
     const handleInputChange = (event) => {
         setUser({ ...user, [event.target.name]: event.target.value })
     }
-
     const auth = useSelector((state) => state.auth)
     const handleSubmit = async (event) => {
         event.preventDefault()
         await loginF(dispatch, user)
         console.log('handleSubmit', auth)
-        if (auth.isLoggedIn) history.push('/')
     }
+    if (auth.isLoggedIn) history.push('/');
     const error_message = auth?.error?.login
     return (
         <div className="mycontainer">

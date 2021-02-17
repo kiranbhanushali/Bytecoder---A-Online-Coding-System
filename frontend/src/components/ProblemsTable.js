@@ -69,6 +69,7 @@ export default function ProblemsTable() {
                         <th scope="col">Category</th>
                         <th scope="col">Accuracy</th>
                         <th scope="col">Submissions</th>
+                        <th scope="col">Stateus</th>
                     </tr>
                 </thead>
                 <tbody>
