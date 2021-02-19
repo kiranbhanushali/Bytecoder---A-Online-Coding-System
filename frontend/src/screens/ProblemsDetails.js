@@ -23,7 +23,6 @@ const ProblemsDetails = (props) => {
                 <div class="align-center my-4 text-center">
                     <div>
                         <h1>{problem && problem.title}</h1>
-
                         <div class=" justify-content-end ">
                             <button onClick={() => submitProblem()}>
                                 {' '}

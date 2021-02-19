@@ -4,6 +4,7 @@ const initialState = {
     error: null,
     response: null,
     inqueue: null,
+    submission: null,
 }
 
 export default function submitReducer(state = initialState, action) {
@@ -31,6 +32,17 @@ export default function submitReducer(state = initialState, action) {
                 response: action.response,
                 inqueue: false,
                 pending: false,
+            }
+        case 'SUBMISSION_FETCH':
+            return {
+                ...state,
+                submission: action.response,
+
+            }
+        case 'CLEAR_SUBMISSION':
+            return {
+                ...state,
+                submission: null,
             }
         default:
             return state

@@ -1,5 +1,6 @@
 import api, { BASE_API_URL } from '../api'
-import { submitError, submitRequest, submitResponse } from './submit'
+import { fetchSubmission } from './fetchSubmission'
+import { submitError, submitRequest, submitResponse, submissionFetch } from './submit'
 
 export function submitF(dispatch, data) {
     dispatch(submitRequest())
@@ -13,7 +14,6 @@ export function submitF(dispatch, data) {
             console.log(error)
             dispatch(submitError(error))
         })
-    api.get(BASE_API_URL + '/submission').then(function (response) {
-        console.log(response.data)
-    })
+    fetchSubmission(dispatch);
+
 }

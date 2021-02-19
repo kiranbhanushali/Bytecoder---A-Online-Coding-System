@@ -12,8 +12,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { fetchSubmission } from '../actions/fetchSubmission'
 import { clearAuthError } from '../actions/generic'
 import { loginF } from '../actions/loginAction'
+
 import './log.css'
 import './theme.css'
 const useStyles = makeStyles((theme) => ({
@@ -50,8 +52,11 @@ export default function Login() {
         await loginF(dispatch, user)
         console.log('handleSubmit', auth)
     }
-    if (auth.isLoggedIn) history.push('/');
+    if (auth.isLoggedIn) {
+        history.push('/');
+    }
     const error_message = auth?.error?.login
+
     return (
         <div className="mycontainer">
             <Container component="main" maxWidth="xs">

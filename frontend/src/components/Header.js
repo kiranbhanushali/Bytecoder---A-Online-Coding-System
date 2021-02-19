@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../actions/login'
 import logo from '../assets/bytecode-logo.png'
-
+import { clearSubmission } from '../actions/generic'
 import './Header.css'
 
 const AddProblem = () => {
@@ -31,6 +31,7 @@ const Authhandle = () => {
     const onClickLogout = () => {
         localStorage.removeItem('token')
         dispatch(logout())
+        dispatch(clearSubmission())
     }
 
     if (isLogged) {

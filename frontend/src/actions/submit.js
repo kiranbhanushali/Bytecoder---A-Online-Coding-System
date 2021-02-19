@@ -23,3 +23,10 @@ export function submitResponse(response) {
         response,
     }
 }
+export function submissionFetch(response) {
+    return {
+        type: 'SUBMISSION_FETCH',
+        response
+
+    }
+}

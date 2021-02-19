@@ -12,6 +12,18 @@ export default function ProblemsTable() {
     const onCategorieClick = (cat) => {
         history.push('/problems?cat=' + cat)
     }
+    const submission = useSelector(state => state.submit.submission)
+    const getProbelmStatus = (code) => {
+        if (submission == null)
+            return "Not attemted";
+        const a = (submission?.sub.filter((submit) =>
+            submit.problemcode.includes(code)
+
+        ));
+        console.log(a);
+        const ans = (a[0]?.result?.verdict);
+        return ans ? ans : "Not Attempted";
+    }
     const problemRow = (item, index) => {
         return (
             <tr key={index}>
@@ -45,6 +57,8 @@ export default function ProblemsTable() {
                 </td>
                 <td>0</td>
                 <td>0</td>
+                <td>{getProbelmStatus(item.code)}</td>
+
             </tr>
         )
     }
@@ -69,7 +83,7 @@ export default function ProblemsTable() {
                         <th scope="col">Category</th>
                         <th scope="col">Accuracy</th>
                         <th scope="col">Submissions</th>
-                        <th scope="col">Stateus</th>
+                        <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
