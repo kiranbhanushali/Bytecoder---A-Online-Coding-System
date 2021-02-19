@@ -46,6 +46,7 @@ const verifyJWT = (req, res, next) => {
 }
 
 router.post('/problem', verifyJWT, function (req, res) {
+    console.log('sub', submission)
     var problem = new ProblemModel({
         title: req.body.title,
         code: req.body.code,

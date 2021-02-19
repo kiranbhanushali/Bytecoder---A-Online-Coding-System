@@ -13,4 +13,7 @@ export function submitF(dispatch, data) {
             console.log(error)
             dispatch(submitError(error))
         })
+    api.get(BASE_API_URL + '/submission').then(function (response) {
+        console.log(response.data)
+    })
 }
