@@ -18,7 +18,7 @@ router.get('/submission', async (req, res) => {
 router.post('/submit', (req, res) => {
     console.log(req.decoded)
     axios
-        .post('http://54.152.21.126:3000/solution/1', req.body)
+        .post('http://18.212.188.136:3000/solution/1', req.body)
         .then(function (response) {
             // console.log(response)
             var newSubmission = new Submission({
