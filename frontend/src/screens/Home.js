@@ -101,88 +101,90 @@ class Home extends Component {
         ]
 
         return (
-            <div className="mycontainer">
-                <div style={{ textAlign: 'center' }}>
-                    <main role="main">
-                        <div className="jumbotron1">
-                            <div className="container">
-                                <h3>BYTE CODE</h3>
-                                <p>
-                                    This is a template for a simple marketing or
-                                    informational website. It includes a large
-                                    callout called a jumbotron and three
-                                    supporting pieces of content. Use it as a
-                                    starting point to create something more
-                                    unique.
+            <div className="full-page">
+                <div className="mycontainer">
+                    <div style={{ textAlign: 'center' }}>
+                        <main role="main">
+                            <div className="jumbotron1">
+                                <div className="container">
+                                    <h3>BYTE CODE</h3>
+                                    <p>
+                                        This is a template for a simple marketing or
+                                        informational website. It includes a large
+                                        callout called a jumbotron and three
+                                        supporting pieces of content. Use it as a
+                                        starting point to create something more
+                                        unique.
                                 </p>
-                                <p>
-                                    <a
-                                        className="btn btn-primary btn-lg"
-                                        href="/problems"
-                                        role="button"
-                                    >
-                                        All Problems &raquo;
+                                    <p>
+                                        <a
+                                            className="btn btn-primary btn-lg"
+                                            href="/problems"
+                                            role="button"
+                                        >
+                                            All Problems &raquo;
                                     </a>
-                                </p>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="corousel">
-                            <Carousel
-                                swipeable={false}
-                                draggable={false}
-                                showDots={true}
-                                responsive={responsive}
-                                ssr={true} // means to render carousel on server-side.
-                                infinite={true}
-                                autoPlay={
-                                    this.props.deviceType !== 'mobile'
-                                        ? true
-                                        : false
-                                }
-                                autoPlaySpeed={10000}
-                                keyBoardControl={true}
-                                customTransition="all .5"
-                                transitionDuration={500}
-                                containerclassName="carousel-container"
-                                removeArrowOnDeviceType={['tablet', 'mobile']}
-                                deviceType={this.props.deviceType}
-                                dotListclassName="custom-dot-list-style"
-                                itemclassName="carousel-item-padding-40-px"
-                            >
-                                {category.map((cat) => {
-                                    return (
-                                        <div key={cat.id} className="card">
-                                            <h3> {cat.name} </h3>
-                                            <div className="imsp">
-                                                <img
-                                                    src={cat.img}
-                                                    alt={cat.name}
-                                                ></img>
-                                            </div>
+                            <div className="corousel">
+                                <Carousel
+                                    swipeable={false}
+                                    draggable={false}
+                                    showDots={true}
+                                    responsive={responsive}
+                                    ssr={true} // means to render carousel on server-side.
+                                    infinite={true}
+                                    autoPlay={
+                                        this.props.deviceType !== 'mobile'
+                                            ? true
+                                            : false
+                                    }
+                                    autoPlaySpeed={10000}
+                                    keyBoardControl={true}
+                                    customTransition="all .5"
+                                    transitionDuration={500}
+                                    containerclassName="carousel-container"
+                                    removeArrowOnDeviceType={['tablet', 'mobile']}
+                                    deviceType={this.props.deviceType}
+                                    dotListclassName="custom-dot-list-style"
+                                    itemclassName="carousel-item-padding-40-px"
+                                >
+                                    {category.map((cat) => {
+                                        return (
+                                            <div key={cat.id} className="card">
+                                                <h3> {cat.name} </h3>
+                                                <div className="imsp">
+                                                    <img
+                                                        src={cat.img}
+                                                        alt={cat.name}
+                                                    ></img>
+                                                </div>
 
-                                            <p>
-                                                <a
-                                                    className="btn btn-outline-light"
-                                                    href={`/problems?cat=${cat.id}`}
-                                                    role="button"
-                                                >
-                                                    View Problems &raquo;
+                                                <p>
+                                                    <a
+                                                        className="btn btn-outline-light"
+                                                        href={`/problems?cat=${cat.id}`}
+                                                        role="button"
+                                                    >
+                                                        View Problems &raquo;
                                                 </a>
-                                            </p>
-                                        </div>
-                                    )
-                                })}
-                                <div></div>
-                            </Carousel>
-                        </div>
-                        <div className="container">
-                            <hr />
-                        </div>
-                    </main>
+                                                </p>
+                                            </div>
+                                        )
+                                    })}
+                                    <div></div>
+                                </Carousel>
+                            </div>
+                            <div className="container">
+                                <hr />
+                            </div>
+                        </main>
 
-                    <footer className="container">
-                        <p>&copy; Company BYTE-CODERS</p>
-                    </footer>
+                        <footer className="container">
+                            <p>&copy; Company BYTE-CODERS</p>
+                        </footer>
+                    </div>
                 </div>
             </div>
         )

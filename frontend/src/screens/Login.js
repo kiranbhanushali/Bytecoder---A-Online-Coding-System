@@ -58,81 +58,83 @@ export default function Login() {
     const error_message = auth?.error?.login
 
     return (
-        <div className="mycontainer">
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <div className="logst">
-                    <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Sign in
+        <div className="full-page">
+            <div className="mycontainer">
+                <Container component="main" maxWidth="xs">
+                    <CssBaseline />
+                    <div className="logst" >
+                        <Avatar className={classes.avatar}>
+                            <LockOutlinedIcon />
+                        </Avatar>
+                        <Typography component="h1" variant="h5">
+                            Sign in
                     </Typography>
-                    <div>
-                        {error_message && (
-                            <div class="alert alert-danger" role="alert">
-                                {error_message}
-                                <button
-                                    type="button"
-                                    class="close"
-                                    data-dismiss="alert"
-                                    aria-label="Close"
-                                    onClick={() => dispatch(clearAuthError())}
-                                >
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                    <form className={classes.form} onSubmit={handleSubmit}>
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="username"
-                            label="Username"
-                            name="username"
-                            onChange={handleInputChange}
-                            value={user.username}
-                            autoFocus
-                        />
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            onChange={handleInputChange}
-                            value={user.password}
-                            id="password"
-                            autoComplete="current-password"
-                        />
+                        <div>
+                            {error_message && (
+                                <div class="alert alert-danger" role="alert">
+                                    {error_message}
+                                    <button
+                                        type="button"
+                                        class="close"
+                                        data-dismiss="alert"
+                                        aria-label="Close"
+                                        onClick={() => dispatch(clearAuthError())}
+                                    >
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                        <form className={classes.form} onSubmit={handleSubmit}>
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="username"
+                                label="Username"
+                                name="username"
+                                onChange={handleInputChange}
+                                value={user.username}
+                                autoFocus
+                            />
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Password"
+                                type="password"
+                                onChange={handleInputChange}
+                                value={user.password}
+                                id="password"
+                                autoComplete="current-password"
+                            />
 
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
-                        >
-                            Sign In
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                className={classes.submit}
+                            >
+                                Sign In
                         </Button>
-                        <Grid container>
-                            <Grid item>
-                                <Link href="/register" variant="body2">
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
+                            <Grid container>
+                                <Grid item>
+                                    <Link href="/register" variant="body2">
+                                        {"Don't have an account? Sign Up"}
+                                    </Link>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </form>
-                </div>
-                <Box mt={8}>
-                    <login />
-                </Box>
-            </Container>
+                        </form>
+                    </div>
+                    <Box mt={8}>
+                        <login />
+                    </Box>
+                </Container>
+            </div>
         </div>
     )
 }

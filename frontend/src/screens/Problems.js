@@ -22,7 +22,10 @@ const Problems = (props) => {
             return <ProblemsTable />
         }
     }
-    return <div className="mycontainer">{loadcompo()}</div>
+    return <div className="full-page">
+        <div className="mycontainer">{loadcompo()}
+        </div>
+    </div>
 }
 
 export default Problems

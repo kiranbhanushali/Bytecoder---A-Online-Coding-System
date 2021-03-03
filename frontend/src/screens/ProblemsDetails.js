@@ -18,33 +18,30 @@ const ProblemsDetails = (props) => {
         // <h1>{problem[0] &&  problem[0].title}</h1>
         // { problem[0] && <Markdown markdown = {problem[0].markdown }/> }
         // </div>
-        <div className="mycontainer">
-            <div class="container-fluid">
-                <div class="align-center my-4 text-center">
-                    <div>
-                        <h1>{problem && problem.title}</h1>
-                        <div class=" justify-content-end ">
-                            <button onClick={() => submitProblem()}>
-                                {' '}
+        <div className="full-page">
+            <div className="mycontainer">
+                <div class="container-fluid">
+                    <div class="align-center my-4 text-center">
+                        <div>
+                            <h1>{problem && problem.title}</h1>
+                            <div class=" justify-content-end ">
+                                <button onClick={() => submitProblem()}>
+                                    {' '}
                                 Submit
                             </button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="align-center text-center ">
-                    <h5> Time Limit 2s . Mem Limit 256 MB</h5>
-                </div>
+                    <div class="align-center text-center ">
+                        <h5> Time Limit 2s . Mem Limit 256 MB</h5>
+                    </div>
 
-                <div class="align-left my-4">
-                    {problem && <Markdown markdown={problem.markdown} />}
-                </div>
+                    <div class="align-left my-4">
+                        {problem && <Markdown markdown={problem.markdown} />}
+                    </div>
 
-                <div class="align-left my-4">
-                    {problem && <Markdown markdown={problem.input[0]} />}
-                </div>
-                <div class="align-left my-4">
-                    {problem && <Markdown markdown={problem.output[0]} />}
+
                 </div>
             </div>
         </div>
