@@ -32,6 +32,10 @@ var UserSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  meta: {
+    totalSubmission: { type: Number, default: 0 },
+    submissions: { type: Number, default: 0 },
+  },
 });
 
 // encrypting password
