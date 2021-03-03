@@ -16,10 +16,12 @@ export default function ProblemsTable() {
     const getProbelmStatus = (code) => {
         if (submission == null)
             return "Not attemted";
-        const a = (submission?.sub.filter((submit) =>
-            submit.problemcode.includes(code)
+        const a = (submission?.sub?.filter((submit) =>
+                    submit.problemcode.includes(code)
 
-        ));
+            ));
+        if( !a)  
+            return "Not attemted";
         console.log(a);
         const ans = (a[a.length - 1]?.result?.verdict);
         const str = (a[a.length - 1]?.result?.verdict);
@@ -39,11 +41,8 @@ export default function ProblemsTable() {
                         digit2 = digit2 * 10 + (str[i] - '0');
                         i++;
                     }
-
                 }
-
             }
-
         }
         var gen_ans = (digit2) + "/" + (digit1);
         console.log("digit1", digit1);
@@ -59,7 +58,6 @@ export default function ProblemsTable() {
                 gen_ans = "Partial Correct";
             }
         }
-
         return ans ? gen_ans : "Not Attempted";
     }
     const problemRow = (item, index) => {
