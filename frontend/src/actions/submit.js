@@ -26,7 +26,19 @@ export function submitResponse(response) {
 export function submissionFetch(response) {
     return {
         type: 'SUBMISSION_FETCH',
-        response
+        response,
 
+    }
+}
+export function updateMeta(meta) {
+    return {
+        type: 'UPDATE META',
+        meta,
+    }
+}
+export function problemMeta(problemmeta) {
+    return {
+        type: 'UPDATE PROBLEM META',
+        problemmeta,
     }
 }

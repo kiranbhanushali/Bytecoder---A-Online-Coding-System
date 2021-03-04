@@ -12,53 +12,24 @@ export default function ProblemsTable() {
     const onCategorieClick = (cat) => {
         history.push('/problems?cat=' + cat)
     }
+
     const submission = useSelector(state => state.submit.submission)
+    const count_sub = useSelector((state) => state.submit)
+
+
+    console.log("count", count_sub.response.problemmeta);
     const getProbelmStatus = (code) => {
         if (submission == null)
             return "Not attemted";
         const a = (submission?.sub?.filter((submit) =>
-                    submit.problemcode.includes(code)
+            submit.problemcode.includes(code)
 
-            ));
-        if( !a)  
+        ));
+        if (!a)
             return "Not attemted";
         console.log(a);
         const ans = (a[a.length - 1]?.result?.verdict);
-        const str = (a[a.length - 1]?.result?.verdict);
-        var digit1 = 0, digit2 = 0, flag = 0;
-        if (ans) {
-            var n = str.length;
-            for (let i = 0; i < n; i++) {
-                if (flag == 0) {
-                    while (i < n && str[i] >= '0' && str[i] <= '9') {
-                        digit1 = digit1 * 10 + (str[i] - '0');
-                        flag = 1;
-                        i++;
-                    }
-                }
-                else {
-                    while (i < n && str[i] >= '0' && str[i] <= '9') {
-                        digit2 = digit2 * 10 + (str[i] - '0');
-                        i++;
-                    }
-                }
-            }
-        }
-        var gen_ans = (digit2) + "/" + (digit1);
-        console.log("digit1", digit1);
-        console.log("digit2", digit2);
-        if (digit1 === digit2) {
-            gen_ans = "Solved";
-        }
-        else {
-            if (digit2 == 0) {
-                gen_ans = "Wrong";
-            }
-            else {
-                gen_ans = "Partial Correct";
-            }
-        }
-        return ans ? gen_ans : "Not Attempted";
+        return ans ? ans : "Not Attempted";
     }
     const problemRow = (item, index) => {
         return (

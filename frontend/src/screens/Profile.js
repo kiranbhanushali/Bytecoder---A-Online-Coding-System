@@ -87,15 +87,15 @@ const Profile = (props) => {
                                 <b>
                                     {' '}
                                     {userdata.meta &&
-                                    userdata.meta.total_submissions
-                                        ? userdata.meta.total_submissions
+                                        userdata.meta.totalSubmission
+                                        ? userdata.meta.totalSubmission
                                         : 0}{' '}
                                 </b>
                                 <p className="text-muted">Total Submissions</p>
                                 <b>
                                     {' '}
-                                    {userdata.meta && userdata.meta.accuracy
-                                        ? userdata.meta.accuracy
+                                    {userdata.meta && userdata.meta.submissions
+                                        ? (userdata.meta.submissions * 100.0) / (userdata.meta.totalSubmission)
                                         : 0}{' '}
                                 </b>
                                 <p className="text-muted">Accuracy</p>

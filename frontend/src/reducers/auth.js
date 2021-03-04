@@ -10,6 +10,10 @@ const initialState = {
   token: null,
   pending: false,
   isAdmin: false,
+  meta: {
+    totalSubmission: 0,
+    submission: 0,
+  },
 };
 
 export default function authReducer(state = initialState, action) {
@@ -107,6 +111,13 @@ export default function authReducer(state = initialState, action) {
         imageUrl: action.payload,
         pending: false,
       };
+    case "UPDATE META":
+      return {
+        ...state,
+        meta: action.meta,
+
+
+      }
     default:
       return state;
   }

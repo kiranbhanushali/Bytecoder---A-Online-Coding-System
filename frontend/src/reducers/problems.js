@@ -5,6 +5,7 @@ const initialState = {
   error: null,
   loaded: false,
   message: null,
+
 };
 
 export default function problemsReducer(state = initialState, action) {
@@ -30,6 +31,7 @@ export default function problemsReducer(state = initialState, action) {
         pending: false,
         error: action.payload,
       };
+
 
     default:
       return state;

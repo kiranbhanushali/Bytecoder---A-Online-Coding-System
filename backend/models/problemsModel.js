@@ -16,8 +16,8 @@ const problemSchema = new Schema({
     required: true,
   },
   meta: {
-    accuracy: Number,
-    submissions: Number,
+    totalSubmission: { type: Number, default: 0 },
+    submissions: { type: Number, default: 0 },
   },
   input: [{ type: String, required: true }],
   output: [{ type: String, required: true }],
