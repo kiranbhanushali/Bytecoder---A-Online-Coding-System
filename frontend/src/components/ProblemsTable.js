@@ -17,7 +17,7 @@ export default function ProblemsTable() {
     const count_sub = useSelector((state) => state.submit)
 
 
-    console.log("count", count_sub.response.problemmeta);
+
     const getProbelmStatus = (code) => {
         if (submission == null)
             return "Not attemted";
