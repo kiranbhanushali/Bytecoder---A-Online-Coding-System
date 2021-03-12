@@ -103,7 +103,8 @@ router.post("/submit", (req, res) => {
         function (err, docs) {
           // console.log(err);
           response.data.problemmeta = docs.meta
-          // console.log("docupdated", docs, req.body.problemcode);
+          //console.log("docupdated", docs.meta);
+          //console.log("jenish", response.data);
 
         }
       );

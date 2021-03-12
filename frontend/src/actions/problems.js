@@ -6,12 +6,19 @@ export function fetchProblemsPending() {
 export function fetchProblemsSuccess(problems) {
     return {
         type: "FETCH_PROBLEMS_SUCCESS",
-        payload:problems
+        payload: problems
     };
 }
 export function fetchProblemsError(error) {
     return {
         type: "FETCH_PROBLEMS_ERROR",
-        payload:error
+        payload: error
     };
+}
+export function updateProblemMeta(data) {
+    return {
+        type: "UPDATE PROBLEMS META",
+        problemcode: data.problemcode,
+        meta: data.problemmeta,
+    }
 }

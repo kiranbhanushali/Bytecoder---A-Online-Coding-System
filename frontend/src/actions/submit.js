@@ -36,9 +36,3 @@ export function updateMeta(meta) {
         meta,
     }
 }
-export function problemMeta(problemmeta) {
-    return {
-        type: 'UPDATE PROBLEM META',
-        problemmeta,
-    }
-}

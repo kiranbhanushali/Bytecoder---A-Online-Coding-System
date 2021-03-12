@@ -30,7 +30,9 @@ export default function ProblemsTable() {
         console.log(a);
         const ans = (a[a.length - 1]?.result?.verdict);
         return ans ? ans : "Not Attempted";
+
     }
+
     const problemRow = (item, index) => {
         return (
             <tr key={index}>
@@ -62,8 +64,8 @@ export default function ProblemsTable() {
                         })}
                     </div>
                 </td>
-                <td>0</td>
-                <td>0</td>
+                <td>{item.meta.totalSubmission ? (item.meta.submissions * 100) / (item.meta.totalSubmission) : 0}</td>
+                <td>{item.meta.totalSubmission}</td>
                 <td>{getProbelmStatus(item.code)}</td>
 
             </tr>

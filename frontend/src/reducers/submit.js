@@ -5,10 +5,7 @@ const initialState = {
     response: null,
     inqueue: null,
     submission: null,
-    problemmeta: {
-        totalSubmission: 0,
-        submission: 0,
-    },
+
 
 }
 
@@ -49,12 +46,7 @@ export default function submitReducer(state = initialState, action) {
                 ...state,
                 submission: null,
             }
-        case "UPDATE PROBLEM META":
-            return {
-                ...state,
-                problemMeta: action.problemMeta,
 
-            };
         default:
             return state
     }

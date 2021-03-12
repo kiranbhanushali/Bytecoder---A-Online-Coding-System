@@ -5,11 +5,105 @@ import './theme.css'
 import { storage } from '../base.js'
 import { uploadImage } from '../actions/profileAction'
 import { useDispatch, useSelector } from 'react-redux'
+import { PieChart } from 'react-minimal-pie-chart';
+import { Bar, Line, Pie } from "react-chartjs-2";
 
 const Profile = (props) => {
     const userdata = useSelector((state) => state.auth)
     const dispatch = useDispatch()
+    const submission = useSelector(state => state.submit.submission)
+    //var output = employees.filter(submission => employee.department == "IT");
+    const problem_list = useSelector((state) => state.problems.problems_list);
+    console.log(problem_list);
+    var array = 0;
+    var string = 0;
+    var searching = 0;
+    var stackqueue = 0;
+    var numbertheory = 0;
+    var tree = 0;
+    var graph = 0;
+    var hashing = 0;
+    var dsu = 0;
+    var gredy = 0;
+    var dp = 0;
+    var bitwise = 0;
+    for (var j = 0; j < submission.sub.length; j++) {
+        for (var i = 0; i < problem_list.length; i++) {
+            if (problem_list[i].code == submission.sub[j].problemcode) {
 
+                for (var k = 0; k < problem_list[i].category.length; k++) {
+                    if (problem_list[i].category[k] == "array") {
+                        array++;
+                    }
+                    if (problem_list[i].category[k] == "string") {
+                        string++;
+                    }
+                    if (problem_list[i].category[k] == "searching") {
+                        searching++;
+                    }
+                    if (problem_list[i].category[k] == "stackqueue") {
+                        stackqueue++;
+                    }
+                    if (problem_list[i].category[k] == "numbertheory") {
+                        numbertheory++;
+                    }
+                    if (problem_list[i].category[k] == "tree") {
+                        tree++;
+                    }
+                    if (problem_list[i].category[k] == "graph") {
+                        graph++;
+                    }
+                    if (problem_list[i].category[k] == "hashing") {
+                        hashing++;
+                    }
+                    if (problem_list[i].category[k] == "dsu") {
+                        dsu++;
+                    }
+                    if (problem_list[i].category[k] == "gredy") {
+                        gredy++;
+                    }
+                    if (problem_list[i].category[k] == "dp") {
+                        dp++;
+                    }
+                    if (problem_list[i].category[k] == "bitwise") {
+                        bitwise++;
+                    }
+
+                }
+            }
+        }
+    }
+    var Chart = {
+        chartData: {
+            labels: ['array', 'string', 'searching', 'stackqueue', 'numbertheory', 'tree', 'graph', 'hashing', 'dsu', 'gredy', 'dp', 'bitwise'],
+            datasets: [
+                {
+                    label: 'Submission',
+                    data: [
+                        array, string, searching, stackqueue, numbertheory, tree, graph, hashing, dsu, gredy, dp, bitwise
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)',
+                        'rgba(255, 0, 0, 0.6)',
+                        'rgba(0,255, 0, 0.6)',
+                        'rgba(0, 0, 235, 0.6)',
+                        'rgba(255, 255, 0, 0.6)',
+                        'rgba(0, 192, 192, 0.6)',
+                        'rgba(0, 152, 255, 0.6)',
+                        'rgba(0, 159, 200, 0.6)',
+                        'rgba(255, 199, 232, 0.6)'
+                    ]
+                }
+            ]
+        }
+    }
+    console.log(array, string, dp, searching);
+    console.log(submission)
     const [file, setFile] = useState(null)
 
     function handleChange(e) {
@@ -99,6 +193,15 @@ const Profile = (props) => {
                                         : 0}{' '}
                                 </b>
                                 <p className="text-muted">Accuracy</p>
+
+                                <Bar
+                                    data={Chart.chartData}
+                                    options={{}}
+                                />
+
+
+
+
                             </div>
                         </div>
                     </div>
