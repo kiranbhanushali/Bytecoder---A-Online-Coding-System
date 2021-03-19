@@ -27,10 +27,64 @@ const Profile = (props) => {
     var gredy = 0;
     var dp = 0;
     var bitwise = 0;
+    var carray = 0;
+    var cstring = 0;
+    var csearching = 0;
+    var cstackqueue = 0;
+    var cnumbertheory = 0;
+    var ctree = 0;
+    var cgraph = 0;
+    var chashing = 0;
+    var cdsu = 0;
+    var cgredy = 0;
+    var cdp = 0;
+    var cbitwise = 0;
     for (var j = 0; j < submission.sub.length; j++) {
         for (var i = 0; i < problem_list.length; i++) {
             if (problem_list[i].code == submission.sub[j].problemcode) {
+                console.log(submission.sub[j].result.verdict);
+                if (submission.sub[j].result.verdict == "Solved") {
+                    for (var k = 0; k < problem_list[i].category.length; k++) {
+                        if (problem_list[i].category[k] == "array") {
+                            carray++;
+                        }
+                        if (problem_list[i].category[k] == "string") {
+                            cstring++;
+                        }
+                        if (problem_list[i].category[k] == "searching") {
+                            csearching++;
+                        }
+                        if (problem_list[i].category[k] == "stackqueue") {
+                            cstackqueue++;
+                        }
+                        if (problem_list[i].category[k] == "numbertheory") {
+                            cnumbertheory++;
+                        }
+                        if (problem_list[i].category[k] == "tree") {
+                            ctree++;
+                        }
+                        if (problem_list[i].category[k] == "graph") {
+                            cgraph++;
+                        }
+                        if (problem_list[i].category[k] == "hashing") {
+                            chashing++;
+                        }
+                        if (problem_list[i].category[k] == "dsu") {
+                            cdsu++;
+                        }
+                        if (problem_list[i].category[k] == "gredy") {
+                            cgredy++;
+                        }
+                        if (problem_list[i].category[k] == "dp") {
+                            cdp++;
+                        }
+                        if (problem_list[i].category[k] == "bitwise") {
+                            cbitwise++;
+                        }
 
+                    }
+
+                }
                 for (var k = 0; k < problem_list[i].category.length; k++) {
                     if (problem_list[i].category[k] == "array") {
                         array++;
@@ -74,34 +128,72 @@ const Profile = (props) => {
         }
     }
     var Chart = {
-        chartData: {
-            labels: ['array', 'string', 'searching', 'stackqueue', 'numbertheory', 'tree', 'graph', 'hashing', 'dsu', 'gredy', 'dp', 'bitwise'],
-            datasets: [
-                {
-                    label: 'Submission',
-                    data: [
-                        array, string, searching, stackqueue, numbertheory, tree, graph, hashing, dsu, gredy, dp, bitwise
-                    ],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.6)',
-                        'rgba(54, 162, 235, 0.6)',
-                        'rgba(255, 206, 86, 0.6)',
-                        'rgba(75, 192, 192, 0.6)',
-                        'rgba(153, 102, 255, 0.6)',
-                        'rgba(255, 159, 64, 0.6)',
-                        'rgba(255, 0, 0, 0.6)',
-                        'rgba(0,255, 0, 0.6)',
-                        'rgba(0, 0, 235, 0.6)',
-                        'rgba(255, 255, 0, 0.6)',
-                        'rgba(0, 192, 192, 0.6)',
-                        'rgba(0, 152, 255, 0.6)',
-                        'rgba(0, 159, 200, 0.6)',
-                        'rgba(255, 199, 232, 0.6)'
-                    ]
-                }
-            ]
-        }
+        label: "Total",
+        data: [
+            array, string, searching, stackqueue, numbertheory, tree, graph, hashing, dsu, gredy, dp, bitwise
+        ],
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+            'rgba(255, 0, 0, 0.6)',
+            'rgba(0,255, 0, 0.6)',
+            'rgba(0, 0, 235, 0.6)',
+            'rgba(255, 255, 0, 0.6)',
+            'rgba(0, 192, 192, 0.6)',
+            'rgba(0, 152, 255, 0.6)',
+            'rgba(0, 159, 200, 0.6)',
+            'rgba(255, 199, 232, 0.6)'
+        ],
+
+
+    };
+    var Chart2 = {
+        label: "Correct",
+        data: [
+            carray, cstring, csearching, cstackqueue, cnumbertheory, ctree, cgraph, chashing, cdsu, cgredy, cdp, cbitwise
+        ],
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 0, 0, 0.2)',
+            'rgba(0,255, 0, 0.2)',
+            'rgba(0, 0, 235, 0.2)',
+            'rgba(255, 255, 0, 0.2)',
+            'rgba(0, 192, 192, 0.2)',
+            'rgba(0, 152, 255, 0.2)',
+            'rgba(0, 159, 200, 0.2)',
+            'rgba(255, 199, 232, 0.2)'
+        ],
+
+    };
+    var chart3 = {
+        labels: ['array', 'string', 'searching', 'stackqueue', 'numbertheory', 'tree', 'graph', 'hashing', 'dsu', 'gredy', 'dp', 'bitwise'],
+        datasets: [Chart, Chart2]
+
     }
+
+
+    var chartOptions = {
+        scales: {
+            xAxes: [{
+                barPercentage: 1,
+                categoryPercentage: 0.6
+            }],
+            yAxes: [{
+                id: "y-axis-Total"
+            }, {
+                id: "y-axis-Correct"
+            }]
+        }
+    };
     console.log(array, string, dp, searching);
     console.log(submission)
     const [file, setFile] = useState(null)
@@ -195,8 +287,17 @@ const Profile = (props) => {
                                 <p className="text-muted">Accuracy</p>
 
                                 <Bar
-                                    data={Chart.chartData}
-                                    options={{}}
+                                    data={chart3}
+                                    options={{
+                                        animationEnabled: true,
+                                        scales: {
+                                            xAxes: [{
+                                                barPercentage: 1,
+                                                categoryPercentage: 0.6
+                                            }],
+
+                                        }
+                                    }}
                                 />
 
 

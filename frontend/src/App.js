@@ -26,8 +26,8 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/problems" exact component={Problems} />
           <Route exact path="/problem/:id" component={ProblemsDetails} />
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/submit" component={Submit} />
+          {auth.isLoggedIn && <Route exact path="/profile" component={Profile} />}
+          {auth.isLoggedIn && <Route exact path="/submit" component={Submit} />}
           {auth.isAdmin && <Route exact path="/addproblem" component={AddProblem} />}
           <Route component={SomeThingWentWrong} />
 

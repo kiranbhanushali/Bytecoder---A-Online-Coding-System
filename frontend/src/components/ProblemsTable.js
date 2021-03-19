@@ -14,6 +14,7 @@ export default function ProblemsTable() {
     }
 
     const submission = useSelector(state => state.submit.submission)
+    console.log(submission);
     const count_sub = useSelector((state) => state.submit)
 
 
@@ -64,8 +65,9 @@ export default function ProblemsTable() {
                         })}
                     </div>
                 </td>
-                <td>{item.meta.totalSubmission ? (item.meta.submissions * 100) / (item.meta.totalSubmission) : 0}</td>
-                <td>{item.meta.totalSubmission}</td>
+
+                <td>{'meta' in item ? ('totalSubmission' in item.meta ? (item.meta.totalSubmission ? (item.meta.submissions * 100) / (item.meta.totalSubmission) : 0) : 0) : 0}</td>
+                <td>{'meta' in item ? ('totalSubmission' in item.meta ? item.meta.totalSubmission : 0) : 0} </td>
                 <td>{getProbelmStatus(item.code)}</td>
 
             </tr>
