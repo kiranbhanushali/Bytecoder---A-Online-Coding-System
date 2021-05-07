@@ -109,12 +109,7 @@ class Home extends Component {
                                 <div className="container">
                                     <h3>BYTE CODE</h3>
                                     <p>
-                                        This is a template for a simple marketing or
-                                        informational website. It includes a large
-                                        callout called a jumbotron and three
-                                        supporting pieces of content. Use it as a
-                                        starting point to create something more
-                                        unique.
+                                        This is the platform which useful for the coders who want some interview preparation content.
                                 </p>
                                     <p>
                                         <a
